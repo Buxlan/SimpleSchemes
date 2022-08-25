@@ -8,10 +8,68 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    private let squareView: SquareView = {
+        let view = SquareView()
+        
+        let origin = CGPoint(x: 30.0, y: 100.0),
+            size = CGSize(width: 50.0, height: 50.0),
+            newFrame = CGRect(origin: origin, size: size)
+        
+        view.frame = newFrame
+        
+        view.backgroundColor = .systemBlue
+        
+        return view
+    }()
+    
+    private let circleView: CircleView = {
+        let view = CircleView()
+        
+        let origin = CGPoint(x: 200.0, y: 100.0),
+            size = CGSize(width: 50.0, height: 50.0),
+            newFrame = CGRect(origin: origin, size: size)
+        
+        view.frame = newFrame
+        
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        title = "Testing views"
+        
+        view.addSubview(squareView)
+        view.addSubview(circleView)
+        
+        circleView.connect(to: squareView)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        print("ViewController viewWillLayoutSubviews Square view frame is: \(squareView.frame)")
+        
+//        UIView.animate(withDuration: 3) {
+//            let origin = CGPoint(x: 30.0, y: 100.0),
+//                size = CGSize(width: 200.0, height: 200.0)
+//
+//            self.squareView.frame = CGRect(origin: origin, size: size)
+//        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        print("ViewController viewDidLayoutSubviews Square view frame is: \(squareView.frame)")
+        
+//        UIView.animate(withDuration: 3) {
+//            let origin = CGPoint(x: 30.0, y: 100.0),
+//                size = CGSize(width: 200.0, height: 200.0)
+//
+//            self.squareView.frame = CGRect(origin: origin, size: size)
+//        }
     }
 
 
