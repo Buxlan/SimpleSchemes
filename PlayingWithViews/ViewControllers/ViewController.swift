@@ -13,7 +13,7 @@ class ViewController: UIViewController {
         let view = SquareView()
         
         let origin = CGPoint(x: 30.0, y: 100.0),
-            size = CGSize(width: 50.0, height: 50.0),
+            size = CGSize(width: 100.0, height: 100.0),
             newFrame = CGRect(origin: origin, size: size)
         
         view.frame = newFrame
@@ -34,6 +34,20 @@ class ViewController: UIViewController {
         
         return view
     }()
+    
+    private let rectangleView: RectangleView = {
+        let view = RectangleView()
+        
+        view.backgroundColor = .systemGray
+        
+        let origin = CGPoint(x: 100.0, y: 300.0),
+            size = CGSize(width: 200.0, height: 200.0),
+            newFrame = CGRect(origin: origin, size: size)
+        
+        view.frame = newFrame
+        
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +56,7 @@ class ViewController: UIViewController {
         
         view.addSubview(squareView)
         view.addSubview(circleView)
+        view.addSubview(rectangleView)
         
         circleView.connect(to: squareView)
     }

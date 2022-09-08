@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		471D4CAA28B810C200250AA2 /* SelectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D4CA928B810C200250AA2 /* SelectableView.swift */; };
+		471D4CAD28B8123C00250AA2 /* EdgeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D4CAC28B8123C00250AA2 /* EdgeType.swift */; };
+		471D4CAF28B8133400250AA2 /* EdgeViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D4CAE28B8133400250AA2 /* EdgeViewProtocol.swift */; };
+		471D4CB128B8139600250AA2 /* DecoratorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D4CB028B8139600250AA2 /* DecoratorProtocol.swift */; };
+		471D4CB528B8140600250AA2 /* SquareEdgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D4CB428B8140600250AA2 /* SquareEdgeView.swift */; };
+		471D4CB828B8144700250AA2 /* SquareEdgeDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D4CB728B8144700250AA2 /* SquareEdgeDecorator.swift */; };
+		471D4CBA28B8149C00250AA2 /* EdgeViewDecoratorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D4CB928B8149C00250AA2 /* EdgeViewDecoratorProtocol.swift */; };
+		471D4CBC28B817B700250AA2 /* ViewWithEdgesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D4CBB28B817B700250AA2 /* ViewWithEdgesProtocol.swift */; };
+		471D4CBE28B8221600250AA2 /* ViewWithDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D4CBD28B8221600250AA2 /* ViewWithDecorator.swift */; };
+		4722D4E028BBFBA100055369 /* EdgeMovementValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4722D4DF28BBFBA100055369 /* EdgeMovementValidatorProtocol.swift */; };
+		4722D4E228BBFC8B00055369 /* ViewMovementValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4722D4E128BBFC8B00055369 /* ViewMovementValidator.swift */; };
 		47855A5528B4089A00108D94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47855A5428B4089A00108D94 /* AppDelegate.swift */; };
 		47855A5728B4089A00108D94 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47855A5628B4089A00108D94 /* SceneDelegate.swift */; };
 		47855A5928B4089A00108D94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47855A5828B4089A00108D94 /* ViewController.swift */; };
@@ -16,9 +27,28 @@
 		47855A6A28B40AC500108D94 /* SquareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47855A6928B40AC500108D94 /* SquareView.swift */; };
 		47855A6C28B4125600108D94 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47855A6B28B4125600108D94 /* CircleView.swift */; };
 		47855A6E28B423F000108D94 /* ConnectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47855A6D28B423F000108D94 /* ConnectableView.swift */; };
+		47D5A4CA28C92979008C047A /* ArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5A4C928C92979008C047A /* ArrowView.swift */; };
+		47D5A4CC28C92CF8008C047A /* SelectableViewWithEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5A4CB28C92CF8008C047A /* SelectableViewWithEdges.swift */; };
+		47D5ED2E28CA7B4B0021D0B9 /* RectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5ED2D28CA7B4B0021D0B9 /* RectangleView.swift */; };
+		47D5ED3128CA83190021D0B9 /* Resizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5ED3028CA83190021D0B9 /* Resizable.swift */; };
+		47D5ED3328CA83C70021D0B9 /* EdgeViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5ED3228CA83C70021D0B9 /* EdgeViewDelegate.swift */; };
+		47D5ED3528CA9E390021D0B9 /* RectangeViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5ED3428CA9E390021D0B9 /* RectangeViewProtocol.swift */; };
+		47D5ED3728CA9FE10021D0B9 /* RoundedRectangleDecoratorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5ED3628CA9FE10021D0B9 /* RoundedRectangleDecoratorProtocol.swift */; };
+		47D5ED3928CAA0490021D0B9 /* RoundedRectangleDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5ED3828CAA0490021D0B9 /* RoundedRectangleDecorator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		471D4CA928B810C200250AA2 /* SelectableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableView.swift; sourceTree = "<group>"; };
+		471D4CAC28B8123C00250AA2 /* EdgeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeType.swift; sourceTree = "<group>"; };
+		471D4CAE28B8133400250AA2 /* EdgeViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeViewProtocol.swift; sourceTree = "<group>"; };
+		471D4CB028B8139600250AA2 /* DecoratorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoratorProtocol.swift; sourceTree = "<group>"; };
+		471D4CB428B8140600250AA2 /* SquareEdgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareEdgeView.swift; sourceTree = "<group>"; };
+		471D4CB728B8144700250AA2 /* SquareEdgeDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareEdgeDecorator.swift; sourceTree = "<group>"; };
+		471D4CB928B8149C00250AA2 /* EdgeViewDecoratorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeViewDecoratorProtocol.swift; sourceTree = "<group>"; };
+		471D4CBB28B817B700250AA2 /* ViewWithEdgesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWithEdgesProtocol.swift; sourceTree = "<group>"; };
+		471D4CBD28B8221600250AA2 /* ViewWithDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWithDecorator.swift; sourceTree = "<group>"; };
+		4722D4DF28BBFBA100055369 /* EdgeMovementValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeMovementValidatorProtocol.swift; sourceTree = "<group>"; };
+		4722D4E128BBFC8B00055369 /* ViewMovementValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMovementValidator.swift; sourceTree = "<group>"; };
 		47855A5128B4089A00108D94 /* PlayingWithViews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayingWithViews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47855A5428B4089A00108D94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47855A5628B4089A00108D94 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +60,14 @@
 		47855A6928B40AC500108D94 /* SquareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareView.swift; sourceTree = "<group>"; };
 		47855A6B28B4125600108D94 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		47855A6D28B423F000108D94 /* ConnectableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectableView.swift; sourceTree = "<group>"; };
+		47D5A4C928C92979008C047A /* ArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowView.swift; sourceTree = "<group>"; };
+		47D5A4CB28C92CF8008C047A /* SelectableViewWithEdges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableViewWithEdges.swift; sourceTree = "<group>"; };
+		47D5ED2D28CA7B4B0021D0B9 /* RectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleView.swift; sourceTree = "<group>"; };
+		47D5ED3028CA83190021D0B9 /* Resizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resizable.swift; sourceTree = "<group>"; };
+		47D5ED3228CA83C70021D0B9 /* EdgeViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeViewDelegate.swift; sourceTree = "<group>"; };
+		47D5ED3428CA9E390021D0B9 /* RectangeViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangeViewProtocol.swift; sourceTree = "<group>"; };
+		47D5ED3628CA9FE10021D0B9 /* RoundedRectangleDecoratorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleDecoratorProtocol.swift; sourceTree = "<group>"; };
+		47D5ED3828CAA0490021D0B9 /* RoundedRectangleDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleDecorator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +81,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		471D4CA828B810B500250AA2 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				471D4CA928B810C200250AA2 /* SelectableView.swift */,
+				471D4CAE28B8133400250AA2 /* EdgeViewProtocol.swift */,
+				471D4CB028B8139600250AA2 /* DecoratorProtocol.swift */,
+				471D4CB928B8149C00250AA2 /* EdgeViewDecoratorProtocol.swift */,
+				471D4CBB28B817B700250AA2 /* ViewWithEdgesProtocol.swift */,
+				471D4CBD28B8221600250AA2 /* ViewWithDecorator.swift */,
+				4722D4DF28BBFBA100055369 /* EdgeMovementValidatorProtocol.swift */,
+				4722D4E128BBFC8B00055369 /* ViewMovementValidator.swift */,
+				47D5A4CB28C92CF8008C047A /* SelectableViewWithEdges.swift */,
+				47D5ED3028CA83190021D0B9 /* Resizable.swift */,
+				47D5ED3228CA83C70021D0B9 /* EdgeViewDelegate.swift */,
+				47D5ED3428CA9E390021D0B9 /* RectangeViewProtocol.swift */,
+				47D5ED3628CA9FE10021D0B9 /* RoundedRectangleDecoratorProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		471D4CAB28B8122100250AA2 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				471D4CAC28B8123C00250AA2 /* EdgeType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		471D4CB228B813F300250AA2 /* Edges */ = {
+			isa = PBXGroup;
+			children = (
+				471D4CB328B813FC00250AA2 /* Square */,
+			);
+			path = Edges;
+			sourceTree = "<group>";
+		};
+		471D4CB328B813FC00250AA2 /* Square */ = {
+			isa = PBXGroup;
+			children = (
+				471D4CB428B8140600250AA2 /* SquareEdgeView.swift */,
+			);
+			path = Square;
+			sourceTree = "<group>";
+		};
+		471D4CB628B8143D00250AA2 /* Decorators */ = {
+			isa = PBXGroup;
+			children = (
+				471D4CB728B8144700250AA2 /* SquareEdgeDecorator.swift */,
+				47D5ED3828CAA0490021D0B9 /* RoundedRectangleDecorator.swift */,
+			);
+			path = Decorators;
+			sourceTree = "<group>";
+		};
 		47855A4828B4089A00108D94 = {
 			isa = PBXGroup;
 			children = (
@@ -62,10 +153,13 @@
 		47855A5328B4089A00108D94 /* PlayingWithViews */ = {
 			isa = PBXGroup;
 			children = (
+				47D5ED2F28CA7D8C0021D0B9 /* ViewControllers */,
+				471D4CB628B8143D00250AA2 /* Decorators */,
+				471D4CAB28B8122100250AA2 /* Enums */,
+				471D4CA828B810B500250AA2 /* Protocols */,
 				47855A6828B40AB700108D94 /* Views */,
 				47855A5428B4089A00108D94 /* AppDelegate.swift */,
 				47855A5628B4089A00108D94 /* SceneDelegate.swift */,
-				47855A5828B4089A00108D94 /* ViewController.swift */,
 				47855A5A28B4089A00108D94 /* Main.storyboard */,
 				47855A5D28B4089B00108D94 /* Assets.xcassets */,
 				47855A5F28B4089B00108D94 /* LaunchScreen.storyboard */,
@@ -77,11 +171,22 @@
 		47855A6828B40AB700108D94 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				471D4CB228B813F300250AA2 /* Edges */,
 				47855A6928B40AC500108D94 /* SquareView.swift */,
+				47D5ED2D28CA7B4B0021D0B9 /* RectangleView.swift */,
 				47855A6B28B4125600108D94 /* CircleView.swift */,
 				47855A6D28B423F000108D94 /* ConnectableView.swift */,
+				47D5A4C928C92979008C047A /* ArrowView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		47D5ED2F28CA7D8C0021D0B9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				47855A5828B4089A00108D94 /* ViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,12 +260,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				471D4CBE28B8221600250AA2 /* ViewWithDecorator.swift in Sources */,
+				471D4CB528B8140600250AA2 /* SquareEdgeView.swift in Sources */,
+				471D4CAD28B8123C00250AA2 /* EdgeType.swift in Sources */,
+				47D5ED3728CA9FE10021D0B9 /* RoundedRectangleDecoratorProtocol.swift in Sources */,
+				4722D4E228BBFC8B00055369 /* ViewMovementValidator.swift in Sources */,
+				4722D4E028BBFBA100055369 /* EdgeMovementValidatorProtocol.swift in Sources */,
 				47855A5928B4089A00108D94 /* ViewController.swift in Sources */,
 				47855A5528B4089A00108D94 /* AppDelegate.swift in Sources */,
+				47D5ED3528CA9E390021D0B9 /* RectangeViewProtocol.swift in Sources */,
 				47855A5728B4089A00108D94 /* SceneDelegate.swift in Sources */,
+				471D4CBC28B817B700250AA2 /* ViewWithEdgesProtocol.swift in Sources */,
+				471D4CB828B8144700250AA2 /* SquareEdgeDecorator.swift in Sources */,
+				471D4CAA28B810C200250AA2 /* SelectableView.swift in Sources */,
 				47855A6A28B40AC500108D94 /* SquareView.swift in Sources */,
+				471D4CBA28B8149C00250AA2 /* EdgeViewDecoratorProtocol.swift in Sources */,
 				47855A6C28B4125600108D94 /* CircleView.swift in Sources */,
+				47D5ED2E28CA7B4B0021D0B9 /* RectangleView.swift in Sources */,
+				471D4CAF28B8133400250AA2 /* EdgeViewProtocol.swift in Sources */,
 				47855A6E28B423F000108D94 /* ConnectableView.swift in Sources */,
+				47D5A4CC28C92CF8008C047A /* SelectableViewWithEdges.swift in Sources */,
+				47D5ED3328CA83C70021D0B9 /* EdgeViewDelegate.swift in Sources */,
+				471D4CB128B8139600250AA2 /* DecoratorProtocol.swift in Sources */,
+				47D5ED3928CAA0490021D0B9 /* RoundedRectangleDecorator.swift in Sources */,
+				47D5A4CA28C92979008C047A /* ArrowView.swift in Sources */,
+				47D5ED3128CA83190021D0B9 /* Resizable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

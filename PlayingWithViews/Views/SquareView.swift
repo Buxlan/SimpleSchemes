@@ -7,17 +7,34 @@
 
 import UIKit
 
-class SquareView: UIView, ConnectableView {
+class SquareView: UIView, ConnectableView, SelectableViewWithEdges {
     
     weak var connectedView: ConnectableView?
-    let lineLayer = CAShapeLayer()
-    let shapeLayer = CAShapeLayer()
+    
+    var isSelected: Bool = false {
+        didSet {
+            selectEdges(isSelected)
+        }
+    }
+    
+    private let lineLayer = CAShapeLayer()
+    private let shapeLayer = CAShapeLayer()
+    
+    internal var edgeViews: [EdgeType: EdgeViewProtocol] = [:]
     
     override init(frame: CGRect = .zero) {
+        
         super.init(frame: frame)
         
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureHandle))
-        addGestureRecognizer(gesture)
+        setupEdges()
+        selectEdges(false)
+        edgeViews.forEach { self.addSubview($1) }
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureHandle))
+        addGestureRecognizer(panGesture)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureHandle))
+        addGestureRecognizer(tapGesture)
     }
     
     required init?(coder: NSCoder) {
@@ -35,11 +52,34 @@ class SquareView: UIView, ConnectableView {
         
         print("SquareView layoutSubviews frame is: \(frame)")
         
-//        let origin = CGPoint(x: 50.0, y: 100.0),
-//            size = CGSize(width: 300.0, height: 300.0),
-//            newFrame = CGRect(origin: origin, size: size)
-//
+        var edgePoints: [CGPoint] = []
+        var minX: CGFloat = .greatestFiniteMagnitude,
+            minY: CGFloat = .greatestFiniteMagnitude,
+            maxX: CGFloat = -.greatestFiniteMagnitude,
+            maxY: CGFloat = -.greatestFiniteMagnitude
+        
+        edgeViews.forEach { (edgeType, view) in
+            print("SquareView edgeType \(edgeType) frame is: \(view.frame)")
+            let rect = view.frame
+//            let rect = edgeType.getRect(in: self.frame, size: view.decorator.size)
+            let point = edgeType.getEdgePoint(bounds: rect),
+                converted = convert(point, to: self)
+            
+            minX = min(minX, point.x)
+            minY = min(minY, point.y)
+            maxX = max(maxX, point.x)
+            maxY = max(maxY, point.y)
+        }
+        
+        let origin = frame.origin
+        
+        let newFrame = CGRect(origin: origin, size: CGSize(width: (maxX-minX), height: (maxY-minY)))
 //        frame = newFrame
+        
+//        self.draw(newFrame)
+        setNeedsDisplay(newFrame)
+        
+        print("SquareView layoutSubviews newFrame is: \(frame)")
     }
     
 }
@@ -113,8 +153,27 @@ extension SquareView {
         
     }
     
+    @objc private func tapGestureHandle() {
+        switchSelection()
+    }
+    
     internal func connectedViewFrameDidChanged() {
         
     }
     
 }
+
+extension SquareView: EdgeMovementValidatorProtocol {
+    
+    func validate(view: UIView, at point: CGPoint) -> Bool {
+        guard let (edgeSide, _) = edgeViews.first(where: { $1 === view })
+        else {
+            print("Edge view not found")
+            return false
+        }
+
+        return true
+    }
+
+}
+

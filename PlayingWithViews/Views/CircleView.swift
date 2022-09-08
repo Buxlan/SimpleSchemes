@@ -20,26 +20,14 @@ class CircleView: UIView, ConnectableView {
         return layer
     }()
     
-    let clearCircleLayer: CAShapeLayer = {
-        let layer = CAShapeLayer()
-        layer.fillColor = UIColor.clear.cgColor
-        layer.strokeColor = UIColor.blue.cgColor
-        layer.lineWidth = 10
-        layer.fillRule = .nonZero
-        
-        return layer
-    }()
-    
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureHandle))
         addGestureRecognizer(gesture)
         
-        layer.mask = clearCircleLayer
         layer.addSublayer(shapeLayer)
         layer.addSublayer(lineLayer)
-//        layer.addSublayer(clearCircleLayer)
         
         lineLayer.lineJoin = CAShapeLayerLineJoin(rawValue: "line")
     }
@@ -67,13 +55,6 @@ class CircleView: UIView, ConnectableView {
         
         let circlePath = UIBezierPath(ovalIn: bounds)
         shapeLayer.path = circlePath.cgPath
-        
-        let newOrigin = CGPoint(x: bounds.width/4, y: bounds.height/4)
-        let littleBounds = CGRect(origin: newOrigin,
-                                  size: CGSize(width: bounds.width/2,
-                                               height: bounds.height/2))
-        let transparentCirclePath = UIBezierPath(ovalIn: littleBounds)
-        clearCircleLayer.path = transparentCirclePath.cgPath
         
         print("CircleView sublayers count: \(layer.sublayers?.count ?? 0)")
         
