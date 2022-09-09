@@ -57,8 +57,6 @@ class ViewController: UIViewController {
         view.addSubview(squareView)
         view.addSubview(circleView)
         view.addSubview(rectangleView)
-        
-        circleView.connect(to: squareView)
     }
     
     override func viewWillLayoutSubviews() {

@@ -35,6 +35,7 @@
 		47D5ED3528CA9E390021D0B9 /* RectangeViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5ED3428CA9E390021D0B9 /* RectangeViewProtocol.swift */; };
 		47D5ED3728CA9FE10021D0B9 /* RoundedRectangleDecoratorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5ED3628CA9FE10021D0B9 /* RoundedRectangleDecoratorProtocol.swift */; };
 		47D5ED3928CAA0490021D0B9 /* RoundedRectangleDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5ED3828CAA0490021D0B9 /* RoundedRectangleDecorator.swift */; };
+		47D5ED3B28CAAE3B0021D0B9 /* SquareViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5ED3A28CAAE3B0021D0B9 /* SquareViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		47D5ED3428CA9E390021D0B9 /* RectangeViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangeViewProtocol.swift; sourceTree = "<group>"; };
 		47D5ED3628CA9FE10021D0B9 /* RoundedRectangleDecoratorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleDecoratorProtocol.swift; sourceTree = "<group>"; };
 		47D5ED3828CAA0490021D0B9 /* RoundedRectangleDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleDecorator.swift; sourceTree = "<group>"; };
+		47D5ED3A28CAAE3B0021D0B9 /* SquareViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareViewProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				47D5ED3028CA83190021D0B9 /* Resizable.swift */,
 				47D5ED3228CA83C70021D0B9 /* EdgeViewDelegate.swift */,
 				47D5ED3428CA9E390021D0B9 /* RectangeViewProtocol.swift */,
+				47D5ED3A28CAAE3B0021D0B9 /* SquareViewProtocol.swift */,
 				47D5ED3628CA9FE10021D0B9 /* RoundedRectangleDecoratorProtocol.swift */,
 			);
 			path = Protocols;
@@ -271,6 +274,7 @@
 				47D5ED3528CA9E390021D0B9 /* RectangeViewProtocol.swift in Sources */,
 				47855A5728B4089A00108D94 /* SceneDelegate.swift in Sources */,
 				471D4CBC28B817B700250AA2 /* ViewWithEdgesProtocol.swift in Sources */,
+				47D5ED3B28CAAE3B0021D0B9 /* SquareViewProtocol.swift in Sources */,
 				471D4CB828B8144700250AA2 /* SquareEdgeDecorator.swift in Sources */,
 				471D4CAA28B810C200250AA2 /* SelectableView.swift in Sources */,
 				47855A6A28B40AC500108D94 /* SquareView.swift in Sources */,

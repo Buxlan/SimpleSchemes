@@ -7,9 +7,9 @@
 
 import UIKit
 
-class SquareView: UIView, ConnectableView, SelectableViewWithEdges {
+class SquareView: UIView, SquareViewProtocol, SelectableViewWithEdges {
     
-    weak var connectedView: ConnectableView?
+    let decorator = RoundedRectangleDecorator()
     
     var isSelected: Bool = false {
         didSet {
@@ -17,8 +17,8 @@ class SquareView: UIView, ConnectableView, SelectableViewWithEdges {
         }
     }
     
-    private let lineLayer = CAShapeLayer()
-    private let shapeLayer = CAShapeLayer()
+    private var initialCenter: CGPoint = .zero
+    var initialFrame: CGRect = .zero
     
     internal var edgeViews: [EdgeType: EdgeViewProtocol] = [:]
     
@@ -26,15 +26,14 @@ class SquareView: UIView, ConnectableView, SelectableViewWithEdges {
         
         super.init(frame: frame)
         
-        setupEdges()
-        selectEdges(false)
-        edgeViews.forEach { self.addSubview($1) }
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        addGestureRecognizer(gesture)
         
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureHandle))
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panned))
         addGestureRecognizer(panGesture)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureHandle))
-        addGestureRecognizer(tapGesture)
+        setupEdges()
+        edgeViews.forEach { self.addSubview($1) }
     }
     
     required init?(coder: NSCoder) {
@@ -44,103 +43,40 @@ class SquareView: UIView, ConnectableView, SelectableViewWithEdges {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        print("SquareView draw frame is: \(frame)")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
+        print("SquareView draw rect is: \(rect)")
         
-        print("SquareView layoutSubviews frame is: \(frame)")
+        let origin = CGPoint(x: rect.origin.x + decorator.offsetFromEdges, y: rect.origin.y + decorator.offsetFromEdges),
+            size = CGSize(width: rect.size.width - 2 * decorator.offsetFromEdges, height: rect.size.height - 2 * decorator.offsetFromEdges)
+        let pathRect = CGRect(origin: origin, size: size)
+        let path = UIBezierPath(roundedRect: pathRect, cornerRadius: decorator.cornerRadius)
+        UIColor.systemBlue.setFill()
+        path.fill()
         
-        var edgePoints: [CGPoint] = []
-        var minX: CGFloat = .greatestFiniteMagnitude,
-            minY: CGFloat = .greatestFiniteMagnitude,
-            maxX: CGFloat = -.greatestFiniteMagnitude,
-            maxY: CGFloat = -.greatestFiniteMagnitude
-        
-        edgeViews.forEach { (edgeType, view) in
-            print("SquareView edgeType \(edgeType) frame is: \(view.frame)")
-            let rect = view.frame
-//            let rect = edgeType.getRect(in: self.frame, size: view.decorator.size)
-            let point = edgeType.getEdgePoint(bounds: rect),
-                converted = convert(point, to: self)
-            
-            minX = min(minX, point.x)
-            minY = min(minY, point.y)
-            maxX = max(maxX, point.x)
-            maxY = max(maxY, point.y)
+        edgeViews.forEach {
+            let rect = $0.getRect(in: rect, size: $1.decorator.size)
+            $1.frame = rect
         }
-        
-        let origin = frame.origin
-        
-        let newFrame = CGRect(origin: origin, size: CGSize(width: (maxX-minX), height: (maxY-minY)))
-//        frame = newFrame
-        
-//        self.draw(newFrame)
-        setNeedsDisplay(newFrame)
-        
-        print("SquareView layoutSubviews newFrame is: \(frame)")
     }
     
 }
 
 extension SquareView {
     
-    func connect(to view: ConnectableView) {
-        connectedView = view
-        view.connectedView = self
+    @objc func tapped() {
+        switchSelection()
+        setNeedsDisplay()
     }
     
-    private func drawLine() {
-        
-        guard let connectedView = connectedView else { return }
-        
-        let start = convert(center, from: superview),
-        end = convert(connectedView.center, from: connectedView.superview)
-        
-        print("SquareView start is: \(start)")
-        print("connectedView end is: \(end)")
-        
-        let path = UIBezierPath()
-        
-        path.move(to: start)
-        path.addLine(to: end)
-        lineLayer.path = path.cgPath
-        
-        lineLayer.strokeColor = UIColor.black.cgColor
-        lineLayer.lineWidth = 2
-        
-        layer.addSublayer(lineLayer)
-        
-    }
-    
-    @objc private func panGestureHandle(_ gesture: UIPanGestureRecognizer) {
-        
-        guard let view = gesture.view else { return }
-        
+    @objc func panned(_ gesture: UIPanGestureRecognizer) {
         switch gesture.state {
         case .possible:
             print("state possible")
         case .began:
             print("state began")
+            initialCenter = center
         case .changed:
-//            print("state changed")
-            let point1 = gesture.translation(in: superview!)
-//            print("Point 1 is: \(point1)")
-            
-            let point2 = gesture.location(in: superview!)
-            print("Point 2 is: \(point2)")
-            center = point2
-            
-            var newCenter = view.center
-            newCenter.x += point1.x
-            newCenter.y += point1.y
-            view.center = newCenter
-            
-            gesture.setTranslation(.zero, in: superview!)
-            connectedView?.connectedViewFrameDidChanged()
-            
-            drawLine()
+            let translation = gesture.translation(in: superview)
+            center = CGPoint(x: initialCenter.x + translation.x, y: initialCenter.y + translation.y)
         case .ended:
             print("state ended")
         case .cancelled:
@@ -150,15 +86,11 @@ extension SquareView {
         @unknown default:
             print("unknown")
         }
-        
     }
     
-    @objc private func tapGestureHandle() {
-        switchSelection()
-    }
-    
-    internal func connectedViewFrameDidChanged() {
-        
+    func resize() {
+        frame = CGRect(origin: frame.origin, size: CGSize(width: 50, height: 50))
+        setNeedsDisplay()
     }
     
 }

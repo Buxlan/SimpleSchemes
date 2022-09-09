@@ -1,5 +1,5 @@
 //
-//  RectangeViewProtocol.swift
+//  SquareViewProtocol.swift
 //  PlayingWithViews
 //
 //  Created by Sergey Bush bushmakin@outlook.com on 09.09.2022.
@@ -7,43 +7,57 @@
 
 import UIKit
 
-protocol RectangleViewProtocol: UIView, ViewWithEdgesProtocol, EdgeViewDelegate {
+protocol SquareViewProtocol: UIView, ViewWithEdgesProtocol, EdgeViewDelegate {
     var initialFrame: CGRect { get set }
 }
 
-extension RectangleViewProtocol {
+extension SquareViewProtocol {
     
     func edgeFrameBeganChanging() {
         initialFrame = frame
     }
     
     func didEdgeFrameChanged(_ translation: CGPoint, edgeType: EdgeType) {
-        if translation.x == 0, translation.y == 0 { return }        
-        let difx = translation.x,
-            dify = translation.y
+        if translation.x == 0, translation.y == 0 { return }
+        
+        let difx = (translation.x + translation.y) / 2,
+            dify = (translation.x + translation.y) / 2
+        
         var newFrame: CGRect
         
         switch edgeType {
         case .leftTop:
-            let newOrigin = CGPoint(x: initialFrame.origin.x + difx, y: initialFrame.origin.y + dify),
+            let difx = (translation.x + translation.y) / 2,
+                dify = (translation.x + translation.y) / 2
+            let newOrigin = CGPoint(x: initialFrame.origin.x + difx/2, y: initialFrame.origin.y + dify/2),
                 height = initialFrame.height - dify,
-                width = initialFrame.width - difx
-            newFrame = CGRect(origin: newOrigin, size: CGSize(width: width, height: height))
+                width = initialFrame.width - difx,
+                side = (height + width) / 2
+            newFrame = CGRect(origin: newOrigin, size: CGSize(width: side, height: side))
         case .rightTop:
-            let newOrigin = CGPoint(x: initialFrame.origin.x, y: initialFrame.origin.y + dify),
-                height = initialFrame.height - dify,
-                width = initialFrame.width + difx
-            newFrame = CGRect(origin: newOrigin, size: CGSize(width: width, height: height))
+            let difx = -(-translation.x + translation.y) / 2,
+                dify = -(-translation.x + translation.y) / 2
+            let newOrigin = CGPoint(x: initialFrame.origin.x - difx/2, y: initialFrame.origin.y - dify/2),
+                height = initialFrame.height + dify,
+                width = initialFrame.width + difx,
+                side = (height + width) / 2
+            newFrame = CGRect(origin: newOrigin, size: CGSize(width: side, height: side))
         case .leftBottom:
-            let newOrigin = CGPoint(x: initialFrame.origin.x + difx, y: initialFrame.origin.y),
-                height = initialFrame.height + dify,
-                width = initialFrame.width - difx
-            newFrame = CGRect(origin: newOrigin, size: CGSize(width: width, height: height))
+            let difx = -(-translation.x + translation.y) / 2,
+                dify = -(-translation.x + translation.y) / 2
+            let newOrigin = CGPoint(x: initialFrame.origin.x + difx/2, y: initialFrame.origin.y + dify/2),
+                height = initialFrame.height - dify,
+                width = initialFrame.width - difx,
+                side = (height + width) / 2
+            newFrame = CGRect(origin: newOrigin, size: CGSize(width: side, height: side))
         case .rightBottom:
-            let newOrigin = CGPoint(x: initialFrame.origin.x, y: initialFrame.origin.y),
+            let difx = (translation.x + translation.y) / 2,
+                dify = (translation.x + translation.y) / 2
+            let newOrigin = CGPoint(x: initialFrame.origin.x - difx/2, y: initialFrame.origin.y - dify/2),
                 height = initialFrame.height + dify,
-                width = initialFrame.width + difx
-            newFrame = CGRect(origin: newOrigin, size: CGSize(width: width, height: height))
+                width = initialFrame.width + difx,
+                side = (height + width) / 2
+            newFrame = CGRect(origin: newOrigin, size: CGSize(width: side, height: side))
         }
         frame = newFrame
         setNeedsDisplay()
