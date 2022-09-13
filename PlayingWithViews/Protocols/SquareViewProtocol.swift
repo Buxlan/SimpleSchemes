@@ -20,9 +20,6 @@ extension SquareViewProtocol {
     func didEdgeFrameChanged(_ translation: CGPoint, edgeType: EdgeType) {
         if translation.x == 0, translation.y == 0 { return }
         
-        let difx = (translation.x + translation.y) / 2,
-            dify = (translation.x + translation.y) / 2
-        
         var newFrame: CGRect
         
         switch edgeType {

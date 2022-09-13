@@ -45,10 +45,19 @@ class RectangleView: UIView, RectangleViewProtocol, SelectableViewWithEdges {
         
         print("RectangleView draw rect is: \(rect)")
         
+        if let context = UIGraphicsGetCurrentContext() {
+            context.clear(rect)
+        }
+        
+        var path = UIBezierPath(rect: rect)
+        UIColor.systemGray6.setFill()
+        path.fill()
+        
         let origin = CGPoint(x: rect.origin.x + decorator.offsetFromEdges, y: rect.origin.y + decorator.offsetFromEdges),
             size = CGSize(width: rect.size.width - 2 * decorator.offsetFromEdges, height: rect.size.height - 2 * decorator.offsetFromEdges)
         let pathRect = CGRect(origin: origin, size: size)
-        let path = UIBezierPath(roundedRect: pathRect, cornerRadius: decorator.cornerRadius)
+        path = UIBezierPath(roundedRect: pathRect, cornerRadius: decorator.cornerRadius)
+        
         UIColor.systemBlue.setFill()
         path.fill()
         

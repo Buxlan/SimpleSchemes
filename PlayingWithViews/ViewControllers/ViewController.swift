@@ -50,26 +50,12 @@ class ViewController: UIViewController {
         super.viewWillLayoutSubviews()
         
         print("ViewController viewWillLayoutSubviews")
-        
-//        UIView.animate(withDuration: 3) {
-//            let origin = CGPoint(x: 30.0, y: 100.0),
-//                size = CGSize(width: 200.0, height: 200.0)
-//
-//            self.squareView.frame = CGRect(origin: origin, size: size)
-//        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         print("ViewController viewDidLayoutSubviews")
-        
-//        UIView.animate(withDuration: 3) {
-//            let origin = CGPoint(x: 30.0, y: 100.0),
-//                size = CGSize(width: 200.0, height: 200.0)
-//
-//            self.squareView.frame = CGRect(origin: origin, size: size)
-//        }
     }
     
     private func configureConstraints() {
