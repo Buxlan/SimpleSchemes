@@ -9,60 +9,47 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private let squareView: SquareView = {
-        let view = SquareView()
-        
-        let origin = CGPoint(x: 30.0, y: 100.0),
-            size = CGSize(width: 100.0, height: 100.0),
-            newFrame = CGRect(origin: origin, size: size)
-        
-        view.frame = newFrame
-        
-        view.backgroundColor = .systemBlue
+    private let scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.minimumZoomScale = 1.0
+        view.maximumZoomScale = 10.0
         
         return view
     }()
     
-    private let circleView: CircleView = {
-        let view = CircleView()
-        
-        let origin = CGPoint(x: 200.0, y: 100.0),
-            size = CGSize(width: 50.0, height: 50.0),
-            newFrame = CGRect(origin: origin, size: size)
-        
-        view.frame = newFrame
+    private let contentView: UIView = {
+        let size = CGSize(width: 1000.0, height: 1000.0)
+        let frame = CGRect(origin: .zero, size: size)
+        let view = UIView(frame: frame)
+        view.backgroundColor = .systemGray6
         
         return view
     }()
     
-    private let rectangleView: RectangleView = {
-        let view = RectangleView()
-        
-        view.backgroundColor = .systemGray
-        
-        let origin = CGPoint(x: 100.0, y: 300.0),
-            size = CGSize(width: 200.0, height: 200.0),
-            newFrame = CGRect(origin: origin, size: size)
-        
-        view.frame = newFrame
-        
-        return view
-    }()
+    private let toolsView = VerticalToolsView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Testing views"
         
-        view.addSubview(squareView)
-        view.addSubview(circleView)
-        view.addSubview(rectangleView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        view.addSubview(toolsView)
+        toolsView.delegate = self
+        
+        scrollView.contentSize = contentView.frame.size
+        scrollView.contentOffset = .init(x: contentView.frame.size.width/2, y: contentView.frame.size.height/2)
+        scrollView.delegate = self
+        
+        configureConstraints()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        print("ViewController viewWillLayoutSubviews Square view frame is: \(squareView.frame)")
+        print("ViewController viewWillLayoutSubviews")
         
 //        UIView.animate(withDuration: 3) {
 //            let origin = CGPoint(x: 30.0, y: 100.0),
@@ -75,7 +62,7 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        print("ViewController viewDidLayoutSubviews Square view frame is: \(squareView.frame)")
+        print("ViewController viewDidLayoutSubviews")
         
 //        UIView.animate(withDuration: 3) {
 //            let origin = CGPoint(x: 30.0, y: 100.0),
@@ -84,7 +71,59 @@ class ViewController: UIViewController {
 //            self.squareView.frame = CGRect(origin: origin, size: size)
 //        }
     }
+    
+    private func configureConstraints() {
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        toolsView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let constraints: [NSLayoutConstraint] = [
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            toolsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            toolsView.widthAnchor.constraint(equalToConstant: 50.0),
+            toolsView.heightAnchor.constraint(equalToConstant: VerticalToolsView.height),
+            toolsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)        
+    }
 
 
+}
+
+extension ViewController: UIScrollViewDelegate {
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        print("scrollView viewForZooming")
+        return contentView
+    }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        print("scrollView scrollViewDidZoom")
+    }
+    
+}
+
+extension ViewController: VerticalToolsViewDelegate {
+    func addFigure(with type: FigureType) {
+        let view = FigureFactory().makeFigureView(with: type),
+            size = AppConfig.newFigureDefaultSize,
+            midX = scrollView.contentOffset.x + scrollView.bounds.size.width / 2 - size.width / 2,
+            midY = scrollView.contentOffset.y + scrollView.bounds.size.height / 2 - size.height / 2,
+            origin = CGPoint(x: midX, y: midY),
+            frame = CGRect(origin: origin, size: size)
+        
+        view.frame = frame
+        
+        print("scrollView.bounds: \(scrollView.bounds)")
+        print("scrollView.bounds.midX: \(scrollView.bounds.midX)")
+        print("scrollView.bounds.midY: \(scrollView.bounds.midY)")
+        
+        contentView.addSubview(view)
+    }
 }
 

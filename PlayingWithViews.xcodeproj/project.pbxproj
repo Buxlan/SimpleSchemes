@@ -18,6 +18,11 @@
 		471D4CBE28B8221600250AA2 /* ViewWithDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471D4CBD28B8221600250AA2 /* ViewWithDecorator.swift */; };
 		4722D4E028BBFBA100055369 /* EdgeMovementValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4722D4DF28BBFBA100055369 /* EdgeMovementValidatorProtocol.swift */; };
 		4722D4E228BBFC8B00055369 /* ViewMovementValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4722D4E128BBFC8B00055369 /* ViewMovementValidator.swift */; };
+		47296BCC28D1291B0018086C /* VerticalToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47296BCB28D1291B0018086C /* VerticalToolsView.swift */; };
+		47296BCF28D130930018086C /* ToolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47296BCE28D130930018086C /* ToolButton.swift */; };
+		47296BD128D135330018086C /* FigureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47296BD028D135330018086C /* FigureType.swift */; };
+		47296BD428D137D40018086C /* FigureFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47296BD328D137D40018086C /* FigureFactory.swift */; };
+		47296BD728D138CC0018086C /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47296BD628D138CC0018086C /* AppConfig.swift */; };
 		47855A5528B4089A00108D94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47855A5428B4089A00108D94 /* AppDelegate.swift */; };
 		47855A5728B4089A00108D94 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47855A5628B4089A00108D94 /* SceneDelegate.swift */; };
 		47855A5928B4089A00108D94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47855A5828B4089A00108D94 /* ViewController.swift */; };
@@ -50,6 +55,11 @@
 		471D4CBD28B8221600250AA2 /* ViewWithDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWithDecorator.swift; sourceTree = "<group>"; };
 		4722D4DF28BBFBA100055369 /* EdgeMovementValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeMovementValidatorProtocol.swift; sourceTree = "<group>"; };
 		4722D4E128BBFC8B00055369 /* ViewMovementValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMovementValidator.swift; sourceTree = "<group>"; };
+		47296BCB28D1291B0018086C /* VerticalToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalToolsView.swift; sourceTree = "<group>"; };
+		47296BCE28D130930018086C /* ToolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolButton.swift; sourceTree = "<group>"; };
+		47296BD028D135330018086C /* FigureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureType.swift; sourceTree = "<group>"; };
+		47296BD328D137D40018086C /* FigureFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureFactory.swift; sourceTree = "<group>"; };
+		47296BD628D138CC0018086C /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		47855A5128B4089A00108D94 /* PlayingWithViews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayingWithViews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47855A5428B4089A00108D94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47855A5628B4089A00108D94 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +110,7 @@
 				47D5ED3428CA9E390021D0B9 /* RectangeViewProtocol.swift */,
 				47D5ED3A28CAAE3B0021D0B9 /* SquareViewProtocol.swift */,
 				47D5ED3628CA9FE10021D0B9 /* RoundedRectangleDecoratorProtocol.swift */,
+				47296BD028D135330018086C /* FigureType.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -137,6 +148,30 @@
 			path = Decorators;
 			sourceTree = "<group>";
 		};
+		47296BCD28D130710018086C /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				47296BCE28D130930018086C /* ToolButton.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		47296BD228D137C60018086C /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				47296BD328D137D40018086C /* FigureFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
+		47296BD528D138C20018086C /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				47296BD628D138CC0018086C /* AppConfig.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		47855A4828B4089A00108D94 = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +191,8 @@
 		47855A5328B4089A00108D94 /* PlayingWithViews */ = {
 			isa = PBXGroup;
 			children = (
+				47296BD528D138C20018086C /* Config */,
+				47296BD228D137C60018086C /* Factories */,
 				47D5ED2F28CA7D8C0021D0B9 /* ViewControllers */,
 				471D4CB628B8143D00250AA2 /* Decorators */,
 				471D4CAB28B8122100250AA2 /* Enums */,
@@ -174,12 +211,14 @@
 		47855A6828B40AB700108D94 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				47296BCD28D130710018086C /* Tools */,
 				471D4CB228B813F300250AA2 /* Edges */,
 				47855A6928B40AC500108D94 /* SquareView.swift */,
 				47D5ED2D28CA7B4B0021D0B9 /* RectangleView.swift */,
 				47855A6B28B4125600108D94 /* CircleView.swift */,
 				47855A6D28B423F000108D94 /* ConnectableView.swift */,
 				47D5A4C928C92979008C047A /* ArrowView.swift */,
+				47296BCB28D1291B0018086C /* VerticalToolsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				471D4CBE28B8221600250AA2 /* ViewWithDecorator.swift in Sources */,
+				47296BCC28D1291B0018086C /* VerticalToolsView.swift in Sources */,
 				471D4CB528B8140600250AA2 /* SquareEdgeView.swift in Sources */,
 				471D4CAD28B8123C00250AA2 /* EdgeType.swift in Sources */,
 				47D5ED3728CA9FE10021D0B9 /* RoundedRectangleDecoratorProtocol.swift in Sources */,
@@ -274,15 +314,19 @@
 				47D5ED3528CA9E390021D0B9 /* RectangeViewProtocol.swift in Sources */,
 				47855A5728B4089A00108D94 /* SceneDelegate.swift in Sources */,
 				471D4CBC28B817B700250AA2 /* ViewWithEdgesProtocol.swift in Sources */,
+				47296BD428D137D40018086C /* FigureFactory.swift in Sources */,
 				47D5ED3B28CAAE3B0021D0B9 /* SquareViewProtocol.swift in Sources */,
 				471D4CB828B8144700250AA2 /* SquareEdgeDecorator.swift in Sources */,
+				47296BD128D135330018086C /* FigureType.swift in Sources */,
 				471D4CAA28B810C200250AA2 /* SelectableView.swift in Sources */,
 				47855A6A28B40AC500108D94 /* SquareView.swift in Sources */,
+				47296BD728D138CC0018086C /* AppConfig.swift in Sources */,
 				471D4CBA28B8149C00250AA2 /* EdgeViewDecoratorProtocol.swift in Sources */,
 				47855A6C28B4125600108D94 /* CircleView.swift in Sources */,
 				47D5ED2E28CA7B4B0021D0B9 /* RectangleView.swift in Sources */,
 				471D4CAF28B8133400250AA2 /* EdgeViewProtocol.swift in Sources */,
 				47855A6E28B423F000108D94 /* ConnectableView.swift in Sources */,
+				47296BCF28D130930018086C /* ToolButton.swift in Sources */,
 				47D5A4CC28C92CF8008C047A /* SelectableViewWithEdges.swift in Sources */,
 				47D5ED3328CA83C70021D0B9 /* EdgeViewDelegate.swift in Sources */,
 				471D4CB128B8139600250AA2 /* DecoratorProtocol.swift in Sources */,
