@@ -9,8 +9,8 @@ import CoreGraphics
 
 protocol EdgeViewDelegate {
     func edgeFrameBeganChanging()
-    func didEdgeFrameChanged(_ translation: CGPoint, edgeType: EdgeType)
+    func didEdgeFrameChanged(_ translation: CGPoint, edgeType: EdgeTypeProtocol)
     
     @available(*, deprecated, renamed: "didEdgeFrameChanged(_:edgeType:)")
-    func didEdgeFrameChanged(_ oldFrame: CGRect, _ newFrame: CGRect, edgeType: EdgeType)
+    func didEdgeFrameChanged(_ oldFrame: CGRect, _ newFrame: CGRect, edgeType: EdgeTypeProtocol)
 }

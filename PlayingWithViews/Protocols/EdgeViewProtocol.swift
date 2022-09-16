@@ -8,6 +8,6 @@
 import UIKit
 
 protocol EdgeViewProtocol: SelectableView, ViewWithDecorator {
-    var edgeType: EdgeType { get set }
+    var edgeType: EdgeTypeProtocol { get set }
     var decorator: EdgeViewDecoratorProtocol { get set }
 }

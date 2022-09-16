@@ -60,3 +60,9 @@ final class RectangleToolButton: ToolButton {
         self.init(type: .rectangle, cornerRadius: cornerRadius)
     }
 }
+
+final class ArrowToolButton: ToolButton {
+    convenience init(cornerRadius: CGFloat = 6.0) {
+        self.init(type: .arrow, cornerRadius: cornerRadius)
+    }
+}

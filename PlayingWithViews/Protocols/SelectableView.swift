@@ -7,7 +7,12 @@
 
 import UIKit
 
+protocol SelectableViewDelegate: AnyObject {
+    func viewDidSelect(_ view: UIView)
+}
+
 protocol SelectableView: UIView {
+    var delegate: SelectableViewDelegate? { get set }    
     var isSelected: Bool { get set }
     
     func setSelected(_ status: Bool)

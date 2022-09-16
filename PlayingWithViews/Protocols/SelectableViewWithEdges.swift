@@ -20,7 +20,7 @@ extension SelectableViewWithEdges {
     }
     
     func selectEdges(_ isSelected: Bool) {
-        edgeViews.forEach { $1.switchSelection() }
+        edgeViews.forEach { $1.setSelected(isSelected) }
     }
     
 }

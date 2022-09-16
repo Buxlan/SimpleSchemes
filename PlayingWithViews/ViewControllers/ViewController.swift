@@ -43,6 +43,9 @@ class ViewController: UIViewController {
         scrollView.contentOffset = .init(x: contentView.frame.size.width/2, y: contentView.frame.size.height/2)
         scrollView.delegate = self
         
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(contentViewTapped))
+        contentView.addGestureRecognizer(gesture)
+        
         configureConstraints()
     }
     
@@ -77,8 +80,6 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate(constraints)        
     }
-
-
 }
 
 extension ViewController: UIScrollViewDelegate {
@@ -96,7 +97,7 @@ extension ViewController: UIScrollViewDelegate {
 
 extension ViewController: VerticalToolsViewDelegate {
     func addFigure(with type: FigureType) {
-        let view = FigureFactory().makeFigureView(with: type),
+        let view = FigureFactory().makeFigureView(with: type, delegate: self),
             size = AppConfig.newFigureDefaultSize,
             midX = scrollView.contentOffset.x + scrollView.bounds.size.width / 2 - size.width / 2,
             midY = scrollView.contentOffset.y + scrollView.bounds.size.height / 2 - size.height / 2,
@@ -111,5 +112,30 @@ extension ViewController: VerticalToolsViewDelegate {
         
         contentView.addSubview(view)
     }
+}
+
+extension ViewController: SelectableViewDelegate {
+    func viewDidSelect(_ view: UIView) {
+        contentView.bringSubviewToFront(view)
+        print("subviews are: \(self.view.subviews)")
+        contentView.subviews.forEach { subview in
+            if subview === view { return }
+            if let subview = subview as? SelectableView, subview.isSelected {
+                subview.setSelected(false)
+            }
+        }
+    }
+}
+
+extension ViewController {
+    
+    @objc private func contentViewTapped() {
+        contentView.subviews.forEach { subview in
+            if let subview = subview as? SelectableView {
+                subview.setSelected(false)
+            }
+        }
+    }
+    
 }
 

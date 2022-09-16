@@ -9,14 +9,25 @@ import UIKit
 
 struct FigureFactory {
     
-    func makeFigureView(with type: FigureType) -> UIView {
+    func makeFigureView(with type: FigureType, delegate: SelectableViewDelegate?) -> UIView {
         switch type {
         case .square:
-            return SquareView()
+            let view = SquareView()
+            view.delegate = delegate
+            return view
         case .rectangle:
-            return RectangleView()
+            let view = RectangleView()
+            view.delegate = delegate
+            return view
         case .circle:
-            return CircleView()
+            let view = CircleView()
+            view.delegate = delegate
+            return view
+        case .arrow:
+            let frame = CGRect(x: 100, y: 100, width: 200, height: 200)
+            let view = ArrowView(frame: frame)
+//            view.delegate = delegate
+            return view
         }
     }
     

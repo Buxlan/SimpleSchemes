@@ -13,7 +13,7 @@ protocol VerticalToolsViewDelegate: AnyObject {
 
 class VerticalToolsView: UIView {
     
-    static let height: CGFloat = 170.0
+    static let height: CGFloat = 220.0
     
     weak var delegate: VerticalToolsViewDelegate?
     
@@ -30,6 +30,7 @@ class VerticalToolsView: UIView {
     private let squareButton = SquareToolButton()
     private let circleButton = CircleToolButton()
     private let rectangleButton = RectangleToolButton()
+    private let arrowButton = ArrowToolButton()
     
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
@@ -38,10 +39,12 @@ class VerticalToolsView: UIView {
         stackView.addArrangedSubview(circleButton)
         stackView.addArrangedSubview(squareButton)
         stackView.addArrangedSubview(rectangleButton)
+        stackView.addArrangedSubview(arrowButton)
         
         circleButton.addTarget(self, action: #selector(tapped), for: .touchUpInside)
         squareButton.addTarget(self, action: #selector(tapped), for: .touchUpInside)
         rectangleButton.addTarget(self, action: #selector(tapped), for: .touchUpInside)
+        arrowButton.addTarget(self, action: #selector(tapped), for: .touchUpInside)
         
         configureConstraints()
     }

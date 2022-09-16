@@ -11,6 +11,7 @@ enum FigureType {
     case square
     case rectangle
     case circle
+    case arrow
     
     var image: UIImage? {
         switch self {
@@ -20,6 +21,8 @@ enum FigureType {
             return UIImage(systemName: "rectangle")
         case .circle:
             return UIImage(systemName: "circle")
+        case .arrow:
+            return UIImage(systemName: "arrow.up.forward")
         }
     }
 }

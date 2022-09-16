@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol RectangleViewProtocol: UIView, ViewWithEdgesProtocol, EdgeViewDelegate {
+protocol RectangleViewProtocol: UIView, ViewWithEdgesProtocol, EdgeViewDelegate where EdgeType == RectangleEdgeType {
     var initialFrame: CGRect { get set }
 }
 
@@ -17,7 +17,8 @@ extension RectangleViewProtocol {
         initialFrame = frame
     }
     
-    func didEdgeFrameChanged(_ translation: CGPoint, edgeType: EdgeType) {
+    func didEdgeFrameChanged(_ translation: CGPoint, edgeType: EdgeTypeProtocol) {
+        guard let edgeType = edgeType as? EdgeType else { return }
         if translation.x == 0, translation.y == 0 { return }        
         let difx = translation.x,
             dify = translation.y
@@ -49,7 +50,8 @@ extension RectangleViewProtocol {
         setNeedsDisplay()
     }
     
-    func didEdgeFrameChanged(_ oldFrame: CGRect, _ newFrame: CGRect, edgeType: EdgeType) {
+    func didEdgeFrameChanged(_ oldFrame: CGRect, _ newFrame: CGRect, edgeType: EdgeTypeProtocol) {
+        guard let edgeType = edgeType as? EdgeType else { return }
         print("New frame is: \(newFrame)")
         
         switch edgeType {

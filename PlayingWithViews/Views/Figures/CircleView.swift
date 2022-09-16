@@ -1,15 +1,18 @@
 //
-//  RectangleView.swift
+//  CircleView.swift
 //  PlayingWithViews
 //
-//  Created by Sergey Bush bushmakin@outlook.com on 08.09.2022.
+//  Created by Sergey Bush bushmakin@outlook.com on 22.08.2022.
 //
 
 import UIKit
 
-class RectangleView: UIView, RectangleViewProtocol, SelectableViewWithEdges {
+class CircleView: UIView, CircleViewProtocol, SelectableViewWithEdges {
+    typealias EdgeType = RectangleEdgeType
     
-    let decorator = RoundedRectangleDecorator()
+    weak var delegate: SelectableViewDelegate?
+    
+    let decorator = CircleDecorator()
     
     var isSelected: Bool = false {
         didSet {
@@ -20,7 +23,7 @@ class RectangleView: UIView, RectangleViewProtocol, SelectableViewWithEdges {
     private var initialCenter: CGPoint = .zero
     var initialFrame: CGRect = .zero
     
-    internal var edgeViews: [EdgeType: EdgeViewProtocol] = [:]
+    internal var edgeViews: [RectangleEdgeType: EdgeViewProtocol] = [:]
     
     override init(frame: CGRect = .zero) {
         
@@ -34,6 +37,8 @@ class RectangleView: UIView, RectangleViewProtocol, SelectableViewWithEdges {
         
         setupEdges()
         edgeViews.forEach { self.addSubview($1) }
+        
+        isOpaque = false
     }
     
     required init?(coder: NSCoder) {
@@ -43,37 +48,36 @@ class RectangleView: UIView, RectangleViewProtocol, SelectableViewWithEdges {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        print("RectangleView draw rect is: \(rect)")
+        print("CircleView draw rect is: \(rect)")
+        
+        let origin = CGPoint(x: rect.origin.x + decorator.offsetFromEdges, y: rect.origin.y + decorator.offsetFromEdges),
+            size = CGSize(width: rect.size.width - 2 * decorator.offsetFromEdges, height: rect.size.height - 2 * decorator.offsetFromEdges)
+        let pathRect = CGRect(origin: origin, size: size)
         
         if let context = UIGraphicsGetCurrentContext() {
             context.clear(rect)
         }
         
-        var path = UIBezierPath(rect: rect)
-        UIColor.systemGray6.setFill()
-        path.fill()
+        print("CircleView draw pathRect is: \(pathRect)")
         
-        let origin = CGPoint(x: rect.origin.x + decorator.offsetFromEdges, y: rect.origin.y + decorator.offsetFromEdges),
-            size = CGSize(width: rect.size.width - 2 * decorator.offsetFromEdges, height: rect.size.height - 2 * decorator.offsetFromEdges)
-        let pathRect = CGRect(origin: origin, size: size)
-        path = UIBezierPath(roundedRect: pathRect, cornerRadius: decorator.cornerRadius)
-        
-        UIColor.systemBlue.setFill()
+        let path = UIBezierPath(ovalIn: pathRect)
+        UIColor.systemGreen.setFill()
         path.fill()
         
         edgeViews.forEach {
             let rect = $0.getRect(in: rect, size: $1.decorator.size)
             $1.frame = rect
-        }        
+        }
     }
     
 }
 
-extension RectangleView {
+extension CircleView {
     
     @objc func tapped() {
         switchSelection()
         setNeedsDisplay()
+        delegate?.viewDidSelect(self)
     }
     
     @objc func panned(_ gesture: UIPanGestureRecognizer) {
@@ -102,4 +106,18 @@ extension RectangleView {
         setNeedsDisplay()
     }
     
+}
+
+extension CircleView: EdgeMovementValidatorProtocol {
+    
+    func validate(view: UIView, at point: CGPoint) -> Bool {
+        guard let (edgeSide, _) = edgeViews.first(where: { $1 === view })
+        else {
+            print("Edge view not found")
+            return false
+        }
+
+        return true
+    }
+
 }

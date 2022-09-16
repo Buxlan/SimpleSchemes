@@ -9,17 +9,19 @@ import UIKit
 
 final class SquareEdgeView: UIView, EdgeViewProtocol {
     
+    weak var delegate: SelectableViewDelegate?    
+    
     var isSelected: Bool = false {
         didSet {
             isHidden = !isSelected
         }
     }
-    var edgeType: EdgeType
+    var edgeType: EdgeTypeProtocol
     var decorator: EdgeViewDecoratorProtocol = SquareEdgeDecorator()
     
     private var initialCenter: CGPoint = .zero
     
-    init(type: EdgeType, frame: CGRect = .zero) {
+    init(type: EdgeTypeProtocol, frame: CGRect = .zero) {
         edgeType = type
         
         super.init(frame: frame)

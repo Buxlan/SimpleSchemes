@@ -1,17 +1,17 @@
 //
-//  SquareViewProtocol.swift
+//  CircleViewProtocol.swift
 //  PlayingWithViews
 //
-//  Created by Sergey Bush bushmakin@outlook.com on 09.09.2022.
+//  Created by Sergey Bush bushmakin@outlook.com on 15.09.2022.
 //
 
 import UIKit
 
-protocol SquareViewProtocol: UIView, ViewWithEdgesProtocol, EdgeViewDelegate where EdgeType == RectangleEdgeType {
+protocol CircleViewProtocol: UIView, ViewWithEdgesProtocol, EdgeViewDelegate where EdgeType == RectangleEdgeType {
     var initialFrame: CGRect { get set }
 }
 
-extension SquareViewProtocol {
+extension CircleViewProtocol where EdgeType == RectangleEdgeType {
     
     func edgeFrameBeganChanging() {
         initialFrame = frame
