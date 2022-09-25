@@ -81,6 +81,7 @@ extension SquareEdgeView {
             if let superview = superview as? EdgeViewDelegate {
                 print("SquareEdgeView frame before are: \(oldFrame)")
                 print("SquareEdgeView frame after are: \(frame)")
+                print("SquareEdgeView object: \(self) translation: \(translation)")
                 superview.didEdgeFrameChanged(translation, edgeType: edgeType)
             }
         case .ended:

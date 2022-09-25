@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ArrowView: UIView, SelectableViewWithEdges {
+class ArrowView: UIView, ArrowViewProtocol, SelectableViewWithEdges {
     typealias EdgeType = ArrowEdgeType    
     
     weak var connectedView1: UIView?
@@ -25,6 +25,7 @@ class ArrowView: UIView, SelectableViewWithEdges {
     
     private var initialCenter: CGPoint = .zero
     var initialFrame: CGRect = .zero
+    var initialTransform: CGAffineTransform = .identity
     
     internal var edgeViews: [EdgeType: EdgeViewProtocol] = [:]
     

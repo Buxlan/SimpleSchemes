@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  PlayingWithViews
+
+  Created by Sergey Bush bushmakin@outlook.com on 25.09.2022.
+  
+*/
+
+"TAB_BAR.CANVAS.TITLE" = "Схемы";
+"CANVAS_LIST.VC.TITLE" = "Ваши схемы";
+"CANVAS_LIST.VC.ADD_NEW_CANVAS.TITLE" = "Добавить";
+"CANVAS.VC.NEW.TITLE" = "Новая схема";
+"SAVE" = "Сохранить";
+
+// BlockSchemeSavingError
+"BLOCK_SCHEME.ERROR.SAVING.NAME_IS_EMPTY" = "Имя блок-схемы пустое";
+"BLOCK_SCHEME.ERROR.SAVING.ALREADY_EXISTS" = "Файл с именем блок-схемы уже существует";
+
+// BlockSchemeLoadingError
+"BLOCK_SCHEME.ERROR.LOADING.NAME_IS_EMPTY" = "Имя блок-схемы пустое";
+"BLOCK_SCHEME.ERROR.LOADING.FILE_NOT_EXISTS" = "Файл блок-схемы не существует";
+"BLOCK_SCHEME.ERROR.LOADING.DATA_IS_NIL" = "Файл блок-схемы пустой";

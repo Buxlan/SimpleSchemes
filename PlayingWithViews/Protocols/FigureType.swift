@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum FigureType {
+enum FigureType: String, Codable {
     case square
     case rectangle
     case circle

@@ -24,10 +24,10 @@ enum ArrowEdgeType: EdgeTypeProtocol {
         switch self {
         case .start:
             origin = CGPoint(x: superViewBounds.minX,
-                             y: superViewBounds.midY)
+                             y: superViewBounds.midY - size.height/2)
         case .end:
-            origin = CGPoint(x: superViewBounds.maxX,
-                             y: superViewBounds.midY)
+            origin = CGPoint(x: superViewBounds.maxX - size.width,
+                             y: superViewBounds.midY - size.height/2)
         }
         
         result = CGRect(origin: origin, size: size)

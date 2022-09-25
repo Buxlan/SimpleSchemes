@@ -7,7 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CanvasViewController: UIViewController {
+    
+    var viewModel: CanvasViewModel!
     
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
@@ -18,7 +20,7 @@ class ViewController: UIViewController {
     }()
     
     private let contentView: UIView = {
-        let size = CGSize(width: 1000.0, height: 1000.0)
+        let size = CGSize.zero
         let frame = CGRect(origin: .zero, size: size)
         let view = UIView(frame: frame)
         view.backgroundColor = .systemGray6
@@ -31,7 +33,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Testing views"
+        if viewModel.blockScheme.isNew {
+            navigationItem.title = "CANVAS.VC.NEW.TITLE".localized()
+        } else {
+            navigationItem.title = viewModel.blockScheme.name
+        }
         
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -39,12 +45,15 @@ class ViewController: UIViewController {
         view.addSubview(toolsView)
         toolsView.delegate = self
         
-        scrollView.contentSize = contentView.frame.size
-        scrollView.contentOffset = .init(x: contentView.frame.size.width/2, y: contentView.frame.size.height/2)
+//        scrollView.contentSize = contentView.frame.size
+//        scrollView.contentOffset = .init(x: contentView.frame.size.width/2, y: contentView.frame.size.height/2)
+        scrollView.bounces = false
         scrollView.delegate = self
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(contentViewTapped))
         contentView.addGestureRecognizer(gesture)
+        
+        configureBars()
         
         configureConstraints()
     }
@@ -61,16 +70,38 @@ class ViewController: UIViewController {
         print("ViewController viewDidLayoutSubviews")
     }
     
+    private func configureBars() {
+        let action = UIAction { [unowned self] _ in
+            do {
+                try self.viewModel.save()
+            } catch let error as BlockSchemeSavingError {
+                print(error.description)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "SAVE".localized(), image: nil, primaryAction: action, menu: nil)
+    }
+    
     private func configureConstraints() {
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         toolsView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         
-        let constraints: [NSLayoutConstraint] = [
+        var constraints: [NSLayoutConstraint] = [
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            
+            contentView.heightAnchor.constraint(equalToConstant: 1000),
+            contentView.widthAnchor.constraint(equalToConstant: 1000),
             
             toolsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
             toolsView.widthAnchor.constraint(equalToConstant: 50.0),
@@ -78,11 +109,19 @@ class ViewController: UIViewController {
             toolsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15)
         ]
         
-        NSLayoutConstraint.activate(constraints)        
+        let heightConstraint = contentView.heightAnchor.constraint(equalTo: scrollView.frameLayoutGuide.heightAnchor)
+        heightConstraint.priority = .defaultLow
+        
+        let widthConstraint = contentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor)
+        widthConstraint.priority = .defaultLow
+        
+        constraints += [heightConstraint, widthConstraint]
+        
+        NSLayoutConstraint.activate(constraints)
     }
 }
 
-extension ViewController: UIScrollViewDelegate {
+extension CanvasViewController: UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         print("scrollView viewForZooming")
@@ -95,7 +134,7 @@ extension ViewController: UIScrollViewDelegate {
     
 }
 
-extension ViewController: VerticalToolsViewDelegate {
+extension CanvasViewController: VerticalToolsViewDelegate {
     func addFigure(with type: FigureType) {
         let view = FigureFactory().makeFigureView(with: type, delegate: self),
             size = AppConfig.newFigureDefaultSize,
@@ -114,7 +153,7 @@ extension ViewController: VerticalToolsViewDelegate {
     }
 }
 
-extension ViewController: SelectableViewDelegate {
+extension CanvasViewController: SelectableViewDelegate {
     func viewDidSelect(_ view: UIView) {
         contentView.bringSubviewToFront(view)
         print("subviews are: \(self.view.subviews)")
@@ -127,7 +166,7 @@ extension ViewController: SelectableViewDelegate {
     }
 }
 
-extension ViewController {
+extension CanvasViewController {
     
     @objc private func contentViewTapped() {
         contentView.subviews.forEach { subview in
