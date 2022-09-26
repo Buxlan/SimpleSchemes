@@ -22,6 +22,10 @@ struct CanvasListViewModel {
 //    ]
     
     init() {
+        items = []
+    }
+    
+    mutating func loadItems() {
         let files = (try? FileUtil.getAvailableBlockSchemeFiles()) ?? []
         
         items = files.map { ItemData(name: $0) }

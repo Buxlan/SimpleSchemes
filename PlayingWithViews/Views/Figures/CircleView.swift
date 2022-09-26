@@ -7,10 +7,12 @@
 
 import UIKit
 
-class CircleView: UIView, CircleViewProtocol, SelectableViewWithEdges {
+class CircleView: UIView, CircleViewProtocol, SelectableAndRemovableViewWithFigureAndEdges {
     typealias EdgeType = RectangleEdgeType
     
-    weak var delegate: SelectableViewDelegate?
+    var figure: Figure
+    
+    weak var delegate: SelectableAndRemovableViewDelegate?
     
     let decorator = CircleDecorator()
     
@@ -25,7 +27,8 @@ class CircleView: UIView, CircleViewProtocol, SelectableViewWithEdges {
     
     internal var edgeViews: [RectangleEdgeType: EdgeViewProtocol] = [:]
     
-    override init(frame: CGRect = .zero) {
+    required init(figure: Figure, frame: CGRect = .zero) {
+        self.figure = figure
         
         super.init(frame: frame)
         

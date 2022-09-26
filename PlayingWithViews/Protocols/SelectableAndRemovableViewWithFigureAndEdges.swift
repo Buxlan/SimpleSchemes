@@ -5,11 +5,11 @@
 //  Created by Sergey Bush bushmakin@outlook.com on 07.09.2022.
 //
 
-protocol SelectableViewWithEdges: SelectableView, ViewWithEdgesProtocol {
+protocol SelectableAndRemovableViewWithFigureAndEdges: SelectableAndRemovableViewWithFigure, ViewWithEdgesProtocol {
     func selectEdges(_ isSelected: Bool)
 }
 
-extension SelectableViewWithEdges {
+extension SelectableAndRemovableViewWithFigureAndEdges {
     
     func setSelected(_ status: Bool) {
         isSelected = status

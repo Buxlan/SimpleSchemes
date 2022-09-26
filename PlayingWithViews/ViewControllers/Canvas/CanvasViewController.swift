@@ -10,6 +10,7 @@ import UIKit
 class CanvasViewController: UIViewController {
     
     var viewModel: CanvasViewModel!
+    let figureViewFactory: FigureViewFactory = FigureViewFactoryImpl()
     
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
@@ -72,15 +73,35 @@ class CanvasViewController: UIViewController {
     
     private func configureBars() {
         let action = UIAction { [unowned self] _ in
-            do {
-                try self.viewModel.save()
-            } catch let error as BlockSchemeSavingError {
-                print(error.description)
-            } catch {
-                print(error.localizedDescription)
-            }
+            if viewModel.blockScheme.isNew {
+                let alert = UIAlertController.makeInputTextAlert(title: "INPUT.NAME".localized(),
+                                                                 message: nil) { [unowned self] result in
+                    switch result {
+                    case .success(let name):
+                        guard let name = name, !name.isEmpty else { return }
+                        viewModel.blockScheme.name = name
+                        saveScheme()
+                    case .failure(_):
+                        return
+                    }
+                }
+                present(alert, animated: true, completion: nil)
+            } else {
+                saveScheme()
+            }            
         }
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "SAVE".localized(), image: nil, primaryAction: action, menu: nil)
+    }
+    
+    private func saveScheme() {
+        do {
+            try viewModel.save()
+        } catch let error as BlockSchemeError {
+            print(error.description)
+        } catch {
+            print(error.localizedDescription)
+        }
+        navigationController?.popViewController(animated: true)
     }
     
     private func configureConstraints() {
@@ -136,7 +157,8 @@ extension CanvasViewController: UIScrollViewDelegate {
 
 extension CanvasViewController: VerticalToolsViewDelegate {
     func addFigure(with type: FigureType) {
-        let view = FigureFactory().makeFigureView(with: type, delegate: self),
+        let figure = viewModel.addFigure(with: type)
+        let view = figureViewFactory.makeFigureView(figure, delegate: self),
             size = AppConfig.newFigureDefaultSize,
             midX = scrollView.contentOffset.x + scrollView.bounds.size.width / 2 - size.width / 2,
             midY = scrollView.contentOffset.y + scrollView.bounds.size.height / 2 - size.height / 2,
@@ -153,13 +175,22 @@ extension CanvasViewController: VerticalToolsViewDelegate {
     }
 }
 
-extension CanvasViewController: SelectableViewDelegate {
+extension CanvasViewController: SelectableAndRemovableViewDelegate {
+    
+    func viewWillRemove(_ view: ViewWithFigureProtocol) {
+        do {
+            try viewModel.blockScheme.remove(figure: view.figure)            
+        } catch {
+            print("Deleting figure error")
+        }
+    }
+    
     func viewDidSelect(_ view: UIView) {
         contentView.bringSubviewToFront(view)
         print("subviews are: \(self.view.subviews)")
         contentView.subviews.forEach { subview in
             if subview === view { return }
-            if let subview = subview as? SelectableView, subview.isSelected {
+            if let subview = subview as? SelectableAndRemovableViewWithFigure, subview.isSelected {
                 subview.setSelected(false)
             }
         }
@@ -170,7 +201,7 @@ extension CanvasViewController {
     
     @objc private func contentViewTapped() {
         contentView.subviews.forEach { subview in
-            if let subview = subview as? SelectableView {
+            if let subview = subview as? SelectableAndRemovableViewWithFigure {
                 subview.setSelected(false)
             }
         }

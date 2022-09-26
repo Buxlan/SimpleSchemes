@@ -11,6 +11,8 @@ enum AppImage: String {
     case tabCanvas = "macwindow.on.rectangle"
     case docTextFill = "doc.text.fill"
     case docFillBadgePlus = "doc.fill.badge.plus"
+    case checkmarkCircleFill = "checkmark.circle.fill"
+    case trashFill = "trash.fill"    
     
     var image: UIImage {
         UIImage(systemName: rawValue)!

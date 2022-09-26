@@ -72,7 +72,10 @@
 		47855A6E28B423F000108D94 /* ConnectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47855A6D28B423F000108D94 /* ConnectableView.swift */; };
 		47B2F48028D3C0FC002F0489 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B2F47F28D3C0FB002F0489 /* UIView.swift */; };
 		47D5A4CA28C92979008C047A /* ArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5A4C928C92979008C047A /* ArrowView.swift */; };
-		47D5A4CC28C92CF8008C047A /* SelectableViewWithEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5A4CB28C92CF8008C047A /* SelectableViewWithEdges.swift */; };
+		47D5A4CC28C92CF8008C047A /* SelectableAndRemovableViewWithFigureAndEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5A4CB28C92CF8008C047A /* SelectableAndRemovableViewWithFigureAndEdges.swift */; };
+		47D5EBB528E21B2F00741D7B /* FigureViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5EBB428E21B2F00741D7B /* FigureViewFactory.swift */; };
+		47D5EBB728E21D0E00741D7B /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5EBB628E21D0E00741D7B /* UIAlertController.swift */; };
+		47D5EBB928E22E8E00741D7B /* ViewWithFigureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5EBB828E22E8E00741D7B /* ViewWithFigureProtocol.swift */; };
 		47D5ED2E28CA7B4B0021D0B9 /* RectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5ED2D28CA7B4B0021D0B9 /* RectangleView.swift */; };
 		47D5ED3128CA83190021D0B9 /* Resizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5ED3028CA83190021D0B9 /* Resizable.swift */; };
 		47D5ED3328CA83C70021D0B9 /* EdgeViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5ED3228CA83C70021D0B9 /* EdgeViewDelegate.swift */; };
@@ -150,7 +153,10 @@
 		47855A6D28B423F000108D94 /* ConnectableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectableView.swift; sourceTree = "<group>"; };
 		47B2F47F28D3C0FB002F0489 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		47D5A4C928C92979008C047A /* ArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowView.swift; sourceTree = "<group>"; };
-		47D5A4CB28C92CF8008C047A /* SelectableViewWithEdges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableViewWithEdges.swift; sourceTree = "<group>"; };
+		47D5A4CB28C92CF8008C047A /* SelectableAndRemovableViewWithFigureAndEdges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableAndRemovableViewWithFigureAndEdges.swift; sourceTree = "<group>"; };
+		47D5EBB428E21B2F00741D7B /* FigureViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureViewFactory.swift; sourceTree = "<group>"; };
+		47D5EBB628E21D0E00741D7B /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
+		47D5EBB828E22E8E00741D7B /* ViewWithFigureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWithFigureProtocol.swift; sourceTree = "<group>"; };
 		47D5ED2D28CA7B4B0021D0B9 /* RectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleView.swift; sourceTree = "<group>"; };
 		47D5ED3028CA83190021D0B9 /* Resizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resizable.swift; sourceTree = "<group>"; };
 		47D5ED3228CA83C70021D0B9 /* EdgeViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeViewDelegate.swift; sourceTree = "<group>"; };
@@ -176,12 +182,13 @@
 			children = (
 				471F20EC28D290AD00532217 /* Decorators */,
 				471D4CA928B810C200250AA2 /* SelectableView.swift */,
+				47D5EBB828E22E8E00741D7B /* ViewWithFigureProtocol.swift */,
 				471D4CAE28B8133400250AA2 /* EdgeViewProtocol.swift */,
 				471D4CBB28B817B700250AA2 /* ViewWithEdgesProtocol.swift */,
 				471D4CBD28B8221600250AA2 /* ViewWithDecorator.swift */,
 				4722D4DF28BBFBA100055369 /* EdgeMovementValidatorProtocol.swift */,
 				4722D4E128BBFC8B00055369 /* ViewMovementValidator.swift */,
-				47D5A4CB28C92CF8008C047A /* SelectableViewWithEdges.swift */,
+				47D5A4CB28C92CF8008C047A /* SelectableAndRemovableViewWithFigureAndEdges.swift */,
 				47D5ED3028CA83190021D0B9 /* Resizable.swift */,
 				47D5ED3228CA83C70021D0B9 /* EdgeViewDelegate.swift */,
 				47D5ED3428CA9E390021D0B9 /* RectangeViewProtocol.swift */,
@@ -263,6 +270,7 @@
 				4733C64428E09D8100CA4B7F /* String */,
 				471F20F728D2939700532217 /* UIBezierPath.swift */,
 				47B2F47F28D3C0FB002F0489 /* UIView.swift */,
+				47D5EBB628E21D0E00741D7B /* UIAlertController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -281,6 +289,7 @@
 			children = (
 				4733C65228E0CD2A00CA4B7F /* ViewControllers */,
 				47296BD328D137D40018086C /* FigureFactory.swift */,
+				47D5EBB428E21B2F00741D7B /* FigureViewFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -558,6 +567,7 @@
 			files = (
 				4733C66F28E0FBD600CA4B7F /* RectangleFigure.swift in Sources */,
 				47B2F48028D3C0FC002F0489 /* UIView.swift in Sources */,
+				47D5EBB928E22E8E00741D7B /* ViewWithFigureProtocol.swift in Sources */,
 				4733C66928E0F15500CA4B7F /* CircleFigure.swift in Sources */,
 				4733C67C28E1077E00CA4B7F /* FileUtil.swift in Sources */,
 				471D4CBE28B8221600250AA2 /* ViewWithDecorator.swift in Sources */,
@@ -613,11 +623,13 @@
 				4733C67728E1064900CA4B7F /* BlockSchemeSaver.swift in Sources */,
 				47855A6E28B423F000108D94 /* ConnectableView.swift in Sources */,
 				47296BCF28D130930018086C /* ToolButton.swift in Sources */,
+				47D5EBB528E21B2F00741D7B /* FigureViewFactory.swift in Sources */,
 				4733C64628E09D8100CA4B7F /* String+Localized.swift in Sources */,
 				4733C67E28E10A7300CA4B7F /* BlockSchemeError.swift in Sources */,
 				4733C64F28E0AB6100CA4B7F /* CanvasListViewModel.swift in Sources */,
-				47D5A4CC28C92CF8008C047A /* SelectableViewWithEdges.swift in Sources */,
+				47D5A4CC28C92CF8008C047A /* SelectableAndRemovableViewWithFigureAndEdges.swift in Sources */,
 				47D5ED3328CA83C70021D0B9 /* EdgeViewDelegate.swift in Sources */,
+				47D5EBB728E21D0E00741D7B /* UIAlertController.swift in Sources */,
 				4733C66D28E0FBB800CA4B7F /* ArrowFigure.swift in Sources */,
 				4733C66228E0EACC00CA4B7F /* FrameProvider.swift in Sources */,
 				471D4CB128B8139600250AA2 /* DecoratorProtocol.swift in Sources */,

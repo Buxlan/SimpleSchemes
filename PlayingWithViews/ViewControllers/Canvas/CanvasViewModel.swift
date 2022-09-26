@@ -14,4 +14,13 @@ struct CanvasViewModel {
         try saver.save(blockScheme)
     }
     
+    func addFigure(with type: FigureType) -> Figure {
+        let figure =  blockScheme.addFigure(with: type)
+        return figure
+    }
+    
+    func remove(figure: Figure) throws {
+        try blockScheme.remove(figure: figure)
+    }
+    
 }

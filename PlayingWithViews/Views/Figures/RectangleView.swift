@@ -7,9 +7,11 @@
 
 import UIKit
 
-class RectangleView: UIView, RectangleViewProtocol, SelectableViewWithEdges {
+class RectangleView: UIView, RectangleViewProtocol, SelectableAndRemovableViewWithFigureAndEdges {
     
-    weak var delegate: SelectableViewDelegate?
+    weak var delegate: SelectableAndRemovableViewDelegate?
+    
+    var figure: Figure
     
     let decorator = RoundedRectangleDecorator()
     
@@ -24,7 +26,8 @@ class RectangleView: UIView, RectangleViewProtocol, SelectableViewWithEdges {
     
     internal var edgeViews: [RectangleEdgeType: EdgeViewProtocol] = [:]
     
-    override init(frame: CGRect = .zero) {
+    required init(figure: Figure, frame: CGRect = .zero) {
+        self.figure = figure
         
         super.init(frame: frame)
         

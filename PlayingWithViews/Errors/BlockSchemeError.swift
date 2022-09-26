@@ -5,7 +5,11 @@
 //  Created by Sergey Bush bushmakin@outlook.com on 26.09.2022.
 //
 
-enum BlockSchemeSavingError: Error {
+protocol BlockSchemeError: Error {
+    var description: String { get }
+}
+
+enum BlockSchemeSavingError: BlockSchemeError {
     case nameIsEmpty
     case alreadyExists
     
@@ -19,7 +23,7 @@ enum BlockSchemeSavingError: Error {
     }
 }
 
-enum BlockSchemeLoadingError: Error {
+enum BlockSchemeLoadingError: BlockSchemeError {
     case nameIsEmpty
     case fileNotExists
     case dataIsNil

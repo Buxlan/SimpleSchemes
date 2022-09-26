@@ -7,13 +7,15 @@
 
 import UIKit
 
-class ArrowView: UIView, ArrowViewProtocol, SelectableViewWithEdges {
-    typealias EdgeType = ArrowEdgeType    
+class ArrowView: UIView, ArrowViewProtocol, SelectableAndRemovableViewWithFigureAndEdges {
+    typealias EdgeType = ArrowEdgeType
+    
+    var figure: Figure
     
     weak var connectedView1: UIView?
     weak var connectedView2: UIView?
     
-    weak var delegate: SelectableViewDelegate?
+    weak var delegate: SelectableAndRemovableViewDelegate?
     
     let decorator = ArrowDecorator()
     
@@ -29,7 +31,9 @@ class ArrowView: UIView, ArrowViewProtocol, SelectableViewWithEdges {
     
     internal var edgeViews: [EdgeType: EdgeViewProtocol] = [:]
     
-    override init(frame: CGRect = .zero) {        
+    required init(figure: Figure, frame: CGRect = .zero) {
+        self.figure = figure
+        
         super.init(frame: frame)
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapped))

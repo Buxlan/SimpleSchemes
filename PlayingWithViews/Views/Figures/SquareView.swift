@@ -7,10 +7,13 @@
 
 import UIKit
 
-class SquareView: UIView, SquareViewProtocol, SelectableViewWithEdges {
+class SquareView: UIView, SquareViewProtocol, SelectableAndRemovableViewWithFigureAndEdges {
+    
     typealias EdgeType = RectangleEdgeType
     
-    weak var delegate: SelectableViewDelegate?
+    var figure: Figure
+    
+    weak var delegate: SelectableAndRemovableViewDelegate?
     
     let decorator = RoundedRectangleDecorator()
     
@@ -20,12 +23,27 @@ class SquareView: UIView, SquareViewProtocol, SelectableViewWithEdges {
         }
     }
     
+    private lazy var customMenu: UIMenu = {
+        let selectAction = UIAction(title: "TO_SELECT".localized(), image: AppImage.checkmarkCircleFill.image, attributes: []) { [unowned self] _ in
+            switchSelection()
+            delegate?.viewDidSelect(self)
+        }
+        let deleteAction = UIAction(title: "TO_DELETE".localized(), image: AppImage.trashFill.image, attributes: .destructive) { [unowned self] _ in
+            delegate?.viewWillRemove(self)
+            removeFromSuperview()
+        }
+        let menu = UIMenu(title: "CHOOSE_WHAT_TO_DO".localized(), image: nil, identifier: nil, children: [selectAction, deleteAction])
+        
+        return menu
+    }()
+    
     private var initialCenter: CGPoint = .zero
     var initialFrame: CGRect = .zero
     
     internal var edgeViews: [EdgeType: EdgeViewProtocol] = [:]
     
-    override init(frame: CGRect = .zero) {
+    required init(figure: Figure, frame: CGRect = .zero) {
+        self.figure = figure
         
         super.init(frame: frame)
         
@@ -39,6 +57,8 @@ class SquareView: UIView, SquareViewProtocol, SelectableViewWithEdges {
         edgeViews.forEach { self.addSubview($1) }
         
         isOpaque = false
+                
+        addInteraction(UIContextMenuInteraction(delegate: self))
     }
     
     required init?(coder: NSCoder) {
@@ -120,5 +140,14 @@ extension SquareView: EdgeMovementValidatorProtocol {
         return true
     }
 
+}
+
+extension SquareView: UIContextMenuInteractionDelegate {
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+                                configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [unowned self] _ in
+            customMenu
+        }
+    }
 }
 

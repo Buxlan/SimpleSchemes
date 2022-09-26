@@ -9,7 +9,7 @@ import UIKit
 
 final class SquareEdgeView: UIView, EdgeViewProtocol {
     
-    weak var delegate: SelectableViewDelegate?    
+    weak var delegate: SelectableViewDelegate?
     
     var isSelected: Bool = false {
         didSet {

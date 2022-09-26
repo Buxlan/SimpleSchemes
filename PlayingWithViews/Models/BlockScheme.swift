@@ -17,7 +17,7 @@ class BlockScheme: Codable {
     var isNew: Bool
     
     init() {
-        name = "test1"
+        name = ""
         figures = FigureList()
         isNew = true
     }
@@ -101,7 +101,7 @@ struct FigureList: Codable {
     //
     
     mutating func addFigure(with type: FigureType) -> Figure {
-        let figure = FigureFactory().makeEmptyFigure(with: type)
+        let figure = FigureFactoryImpl().makeEmptyFigure(with: type)
         items.append(figure)
         
         return figure

@@ -42,6 +42,9 @@ final class CanvasListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        viewModel.loadItems()
+        collectionView.reloadData()
+        
         print("CanvasListViewController viewWillAppear frame = \(view.frame)")
     }
     
