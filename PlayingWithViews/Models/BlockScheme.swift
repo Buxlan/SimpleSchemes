@@ -73,18 +73,20 @@ struct FigureList: Codable {
         let figures = try container.nestedUnkeyedContainer(forKey: .figures)
         
         var figuresArray = figures
-        while !figures.isAtEnd {
+        var figureDecoder = figuresArray
+        while !figuresArray.isAtEnd {
             let figure = try figuresArray.nestedContainer(keyedBy: FigureTypes.self)
             let type = try figure.decode(FigureType.self, forKey: .type)
+            
             switch type {
             case .square:
-                items.append(try figuresArray.decode(SquareFigure.self))
+                items.append(try figureDecoder.decode(SquareFigure.self))
             case .rectangle:
-                items.append(try figuresArray.decode(RectangleFigure.self))
+                items.append(try figureDecoder.decode(RectangleFigure.self))
             case .circle:
-                items.append(try figuresArray.decode(CircleFigure.self))
+                items.append(try figureDecoder.decode(CircleFigure.self))
             case .arrow:
-                items.append(try figuresArray.decode(ArrowFigure.self))
+                items.append(try figureDecoder.decode(ArrowFigure.self))
             }
         }
         

@@ -5,9 +5,19 @@
 //  Created by Sergey Bush bushmakin@outlook.com on 26.09.2022.
 //
 
+protocol CanvasViewModelDelegate: AnyObject {
+    func updateCanvas()
+}
+
 struct CanvasViewModel {
     
-    var blockScheme: BlockScheme = BlockScheme()
+    weak var delegate: CanvasViewModelDelegate?
+    
+    var blockScheme: BlockScheme = BlockScheme() {
+        didSet {
+            delegate?.updateCanvas()
+        }
+    }
     
     func save() throws {
         let saver = BlockSchemeSaver()

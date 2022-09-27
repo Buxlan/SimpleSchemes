@@ -11,6 +11,13 @@ class RectangleView: UIView, RectangleViewProtocol, SelectableAndRemovableViewWi
     
     weak var delegate: SelectableAndRemovableViewDelegate?
     
+    override var frame: CGRect {
+        didSet {
+            print("SquareView new frame is \(frame)")
+            figure.frame = frame
+        }
+    }
+    
     var figure: Figure
     
     let decorator = RoundedRectangleDecorator()
@@ -92,6 +99,7 @@ extension RectangleView {
             center = CGPoint(x: initialCenter.x + translation.x, y: initialCenter.y + translation.y)
         case .ended:
             print("state ended")
+            figure.frame = frame
         case .cancelled:
             print("state cancelled")
         case .failed:

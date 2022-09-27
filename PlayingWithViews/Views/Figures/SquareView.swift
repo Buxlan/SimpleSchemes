@@ -11,6 +11,13 @@ class SquareView: UIView, SquareViewProtocol, SelectableAndRemovableViewWithFigu
     
     typealias EdgeType = RectangleEdgeType
     
+    override var frame: CGRect {
+        didSet {
+            print("SquareView new frame is \(frame)")
+            figure.frame = frame
+        }
+    }
+    
     var figure: Figure
     
     weak var delegate: SelectableAndRemovableViewDelegate?
@@ -112,6 +119,7 @@ extension SquareView {
             center = CGPoint(x: initialCenter.x + translation.x, y: initialCenter.y + translation.y)
         case .ended:
             print("state ended")
+            figure.frame = frame
         case .cancelled:
             print("state cancelled")
         case .failed:

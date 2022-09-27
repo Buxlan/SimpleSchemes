@@ -10,6 +10,13 @@ import UIKit
 class ArrowView: UIView, ArrowViewProtocol, SelectableAndRemovableViewWithFigureAndEdges {
     typealias EdgeType = ArrowEdgeType
     
+    override var frame: CGRect {
+        didSet {
+            print("SquareView new frame is \(frame)")
+            figure.frame = frame
+        }
+    }
+    
     var figure: Figure
     
     weak var connectedView1: UIView?
@@ -96,6 +103,7 @@ extension ArrowView {
             center = CGPoint(x: initialCenter.x + translation.x, y: initialCenter.y + translation.y)
         case .ended:
             print("state ended")
+            figure.frame = frame
         case .cancelled:
             print("state cancelled")
         case .failed:

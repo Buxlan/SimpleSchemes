@@ -34,11 +34,13 @@ class CanvasViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.delegate = self
         if viewModel.blockScheme.isNew {
             navigationItem.title = "CANVAS.VC.NEW.TITLE".localized()
         } else {
             navigationItem.title = viewModel.blockScheme.name
         }
+        updateCanvas()
         
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -158,7 +160,7 @@ extension CanvasViewController: UIScrollViewDelegate {
 extension CanvasViewController: VerticalToolsViewDelegate {
     func addFigure(with type: FigureType) {
         let figure = viewModel.addFigure(with: type)
-        let view = figureViewFactory.makeFigureView(figure, delegate: self),
+        let view = figureViewFactory.makeFigureView(figure, frame: .zero, delegate: self),
             size = AppConfig.newFigureDefaultSize,
             midX = scrollView.contentOffset.x + scrollView.bounds.size.width / 2 - size.width / 2,
             midY = scrollView.contentOffset.y + scrollView.bounds.size.height / 2 - size.height / 2,
@@ -193,6 +195,19 @@ extension CanvasViewController: SelectableAndRemovableViewDelegate {
             if let subview = subview as? SelectableAndRemovableViewWithFigure, subview.isSelected {
                 subview.setSelected(false)
             }
+        }
+    }
+}
+
+extension CanvasViewController: CanvasViewModelDelegate {
+    func updateCanvas() {
+        print("CanvasViewController updateCanvas")
+        contentView.subviews.forEach { $0.removeFromSuperview() }
+        viewModel.blockScheme.figures.items.forEach { figure in
+            let view = figureViewFactory.makeFigureView(figure, frame: figure.frame, delegate: self)
+            view.frame = figure.frame
+            
+            contentView.addSubview(view)
         }
     }
 }

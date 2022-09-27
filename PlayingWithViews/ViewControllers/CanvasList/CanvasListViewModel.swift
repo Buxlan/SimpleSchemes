@@ -12,14 +12,6 @@ struct CanvasListViewModel {
     }
     
     var items: [ItemData]
-//    = [
-//        ItemData(name: "first document"),
-//        ItemData(name: "second document (черновик)"),
-//        ItemData(name: "third"),
-//        ItemData(name: "fourth"),
-//        ItemData(name: "fifth"),
-//        ItemData(name: "sixth")
-//    ]
     
     init() {
         items = []
@@ -28,7 +20,7 @@ struct CanvasListViewModel {
     mutating func loadItems() {
         let files = (try? FileUtil.getAvailableBlockSchemeFiles()) ?? []
         
-        items = files.map { ItemData(name: $0) }
+        items = files.map { ItemData(name: $0) }.sorted(by: { $0.name < $1.name })
     }
     
 }
