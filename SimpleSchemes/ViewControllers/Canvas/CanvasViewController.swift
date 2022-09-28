@@ -159,6 +159,8 @@ class CanvasViewController: UIViewController {
     }
 }
 
+// MARK: - UIScrollViewDelegate
+
 extension CanvasViewController: UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -171,6 +173,8 @@ extension CanvasViewController: UIScrollViewDelegate {
     }
     
 }
+
+// MARK: - VerticalToolsViewDelegate
 
 extension CanvasViewController: VerticalToolsViewDelegate {
     func addFigure(with type: FigureType) {
@@ -191,6 +195,8 @@ extension CanvasViewController: VerticalToolsViewDelegate {
         contentView.addSubview(view)
     }
 }
+
+// MARK: - SelectableAndRemovableViewDelegate
 
 extension CanvasViewController: SelectableAndRemovableViewDelegate {
     
@@ -222,6 +228,8 @@ extension CanvasViewController: SelectableAndRemovableViewDelegate {
     }
 }
 
+// MARK: - CanvasViewModelDelegate
+
 extension CanvasViewController: CanvasViewModelDelegate {
     func updateCanvas() {
         print("CanvasViewController updateCanvas")
@@ -234,6 +242,8 @@ extension CanvasViewController: CanvasViewModelDelegate {
         }
     }
 }
+
+// MARK: - FigurePropertiesBottomSlidingMenuDelegate
 
 extension CanvasViewController: FigurePropertiesBottomSlidingMenuDelegate {
     func colorDidSelect(_ color: UIColor) {
