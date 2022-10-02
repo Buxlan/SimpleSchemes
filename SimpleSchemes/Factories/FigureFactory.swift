@@ -10,21 +10,30 @@ import UIKit
 protocol FigureFactory {
     func makeEmptyFigure(with type: FigureType) -> Figure
     func makeFigure(with type: FigureType, from decoder: Decoder) throws -> Figure
+    func makeConfiguredFigure(with type: FigureType, config: FigureConfigurator) -> Figure
 }
 
 struct FigureFactoryImpl: FigureFactory {
-    
     func makeEmptyFigure(with type: FigureType) -> Figure {
+        var figure: Figure,
+            config: FigureConfigurator
         switch type {
         case .square:
-            return SquareFigure()
+            figure = SquareFigure()
+            config = SquareConfigurator(data: DefaultSquareFigureConfiguration())
         case .rectangle:
-            return RectangleFigure()
+            figure = RectangleFigure()
+            config = RectangleConfigurator(data: DefaultRectangleFigureConfiguration())
         case .circle:
-            return CircleFigure()
+            figure = CircleFigure()
+            config = CircleConfigurator(data: DefaultCircleFigureConfiguration())
         case .arrow:
-            return ArrowFigure()
+            figure = ArrowFigure()
+            config = ArrowConfigurator(data: DefaultArrowFigureConfiguration())
         }
+        config.configure(figure: figure)
+        
+        return figure
     }
     
     func makeFigure(with type: FigureType, from decoder: Decoder) throws -> Figure {
@@ -38,6 +47,14 @@ struct FigureFactoryImpl: FigureFactory {
         case .arrow:
             return try ArrowFigure(from: decoder)
         }
+    }
+    
+    func makeConfiguredFigure(with type: FigureType, config: FigureConfigurator) -> Figure {
+        let figure = makeEmptyFigure(with: type)
+        
+        config.configure(figure: figure)
+        
+        return figure
     }
     
 }

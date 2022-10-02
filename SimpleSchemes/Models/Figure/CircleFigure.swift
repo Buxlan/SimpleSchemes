@@ -18,3 +18,11 @@ class CircleFigure: Figure {
     }
     
 }
+
+extension CircleFigure: ConfigurableFigure {
+    typealias DataType = DefaultFigureConfigurationProtocol
+    
+    func configure(with data: DataType) {
+        backcolor = data.backgroundColor
+    }
+}

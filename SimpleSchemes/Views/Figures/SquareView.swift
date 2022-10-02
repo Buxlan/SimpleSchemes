@@ -20,8 +20,10 @@ class SquareView: UIView, SquareViewProtocol, SelectableAndRemovableViewWithFigu
     
     var figure: Figure
     var figureColor: UIColor {
-        didSet {
-            figure.backcolor = figureColor
+        get {
+            figure.backcolor
+        } set {
+            figure.backcolor = newValue
         }
     }
     
@@ -54,11 +56,12 @@ class SquareView: UIView, SquareViewProtocol, SelectableAndRemovableViewWithFigu
     
     internal var edgeViews: [EdgeType: EdgeViewProtocol] = [:]
     
-    required init(figure: Figure, figureColor: UIColor, frame: CGRect = .zero) {
+    required init(figure: Figure, frame: CGRect = .zero) {
         self.figure = figure
-        self.figureColor = figureColor
         
         super.init(frame: frame)
+        
+        self.figureColor = figure.backcolor
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
         addGestureRecognizer(gesture)

@@ -18,3 +18,11 @@ class RectangleFigure: Figure {
     }
     
 }
+
+extension RectangleFigure: ConfigurableFigure {
+    typealias DataType = DefaultFigureConfigurationProtocol
+    
+    func configure(with data: DataType) {
+        backcolor = data.backgroundColor
+    }
+}

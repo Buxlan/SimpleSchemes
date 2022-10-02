@@ -87,6 +87,16 @@
 		47D5ED3728CA9FE10021D0B9 /* RoundedRectangleDecoratorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5ED3628CA9FE10021D0B9 /* RoundedRectangleDecoratorProtocol.swift */; };
 		47D5ED3928CAA0490021D0B9 /* RoundedRectangleDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5ED3828CAA0490021D0B9 /* RoundedRectangleDecorator.swift */; };
 		47D5ED3B28CAAE3B0021D0B9 /* SquareViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5ED3A28CAAE3B0021D0B9 /* SquareViewProtocol.swift */; };
+		47FAB20E28EA1BE0007B9560 /* ConfigurableFigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FAB20D28EA1BE0007B9560 /* ConfigurableFigure.swift */; };
+		47FAB21028EA1EC8007B9560 /* DefaultFigureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FAB20F28EA1EC8007B9560 /* DefaultFigureConfiguration.swift */; };
+		47FAB21328EA1FE1007B9560 /* BackgroundColorProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FAB21228EA1FE1007B9560 /* BackgroundColorProviding.swift */; };
+		47FAB21528EA2003007B9560 /* TextColorProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FAB21428EA2003007B9560 /* TextColorProviding.swift */; };
+		47FAB21728EA212F007B9560 /* DefaultFigureConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FAB21628EA212F007B9560 /* DefaultFigureConfigurationProtocol.swift */; };
+		47FAB21A28EA2417007B9560 /* FigureConfigutaion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FAB21928EA2417007B9560 /* FigureConfigutaion.swift */; };
+		47FAB21C28EA3927007B9560 /* DefaultSquareFigureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FAB21B28EA3927007B9560 /* DefaultSquareFigureConfiguration.swift */; };
+		47FAB21E28EA405B007B9560 /* DefaultRectangleFigureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FAB21D28EA405B007B9560 /* DefaultRectangleFigureConfiguration.swift */; };
+		47FAB22028EA4075007B9560 /* DefaultCircleFigureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FAB21F28EA4075007B9560 /* DefaultCircleFigureConfiguration.swift */; };
+		47FAB22228EA40A3007B9560 /* DefaultArrowFigureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FAB22128EA40A3007B9560 /* DefaultArrowFigureConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -172,6 +182,16 @@
 		47D5ED3628CA9FE10021D0B9 /* RoundedRectangleDecoratorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleDecoratorProtocol.swift; sourceTree = "<group>"; };
 		47D5ED3828CAA0490021D0B9 /* RoundedRectangleDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleDecorator.swift; sourceTree = "<group>"; };
 		47D5ED3A28CAAE3B0021D0B9 /* SquareViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareViewProtocol.swift; sourceTree = "<group>"; };
+		47FAB20D28EA1BE0007B9560 /* ConfigurableFigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableFigure.swift; sourceTree = "<group>"; };
+		47FAB20F28EA1EC8007B9560 /* DefaultFigureConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFigureConfiguration.swift; sourceTree = "<group>"; };
+		47FAB21228EA1FE1007B9560 /* BackgroundColorProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColorProviding.swift; sourceTree = "<group>"; };
+		47FAB21428EA2003007B9560 /* TextColorProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextColorProviding.swift; sourceTree = "<group>"; };
+		47FAB21628EA212F007B9560 /* DefaultFigureConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFigureConfigurationProtocol.swift; sourceTree = "<group>"; };
+		47FAB21928EA2417007B9560 /* FigureConfigutaion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureConfigutaion.swift; sourceTree = "<group>"; };
+		47FAB21B28EA3927007B9560 /* DefaultSquareFigureConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSquareFigureConfiguration.swift; sourceTree = "<group>"; };
+		47FAB21D28EA405B007B9560 /* DefaultRectangleFigureConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRectangleFigureConfiguration.swift; sourceTree = "<group>"; };
+		47FAB21F28EA4075007B9560 /* DefaultCircleFigureConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCircleFigureConfiguration.swift; sourceTree = "<group>"; };
+		47FAB22128EA40A3007B9560 /* DefaultArrowFigureConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultArrowFigureConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +405,7 @@
 		4733C66028E0EAB500CA4B7F /* Figure */ = {
 			isa = PBXGroup;
 			children = (
+				47FAB20C28EA1BC2007B9560 /* ConfigurableFigure */,
 				4733C65E28E0EA3600CA4B7F /* Figure.swift */,
 				4733C66828E0F15500CA4B7F /* CircleFigure.swift */,
 				4733C66A28E0F17B00CA4B7F /* SquareFigure.swift */,
@@ -513,6 +534,39 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		47FAB20C28EA1BC2007B9560 /* ConfigurableFigure */ = {
+			isa = PBXGroup;
+			children = (
+				47FAB21828EA2400007B9560 /* Configurations */,
+				47FAB21128EA1FCF007B9560 /* Protocols */,
+				47FAB20D28EA1BE0007B9560 /* ConfigurableFigure.swift */,
+				47FAB20F28EA1EC8007B9560 /* DefaultFigureConfiguration.swift */,
+			);
+			path = ConfigurableFigure;
+			sourceTree = "<group>";
+		};
+		47FAB21128EA1FCF007B9560 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				47FAB21228EA1FE1007B9560 /* BackgroundColorProviding.swift */,
+				47FAB21428EA2003007B9560 /* TextColorProviding.swift */,
+				47FAB21628EA212F007B9560 /* DefaultFigureConfigurationProtocol.swift */,
+				47FAB21B28EA3927007B9560 /* DefaultSquareFigureConfiguration.swift */,
+				47FAB21D28EA405B007B9560 /* DefaultRectangleFigureConfiguration.swift */,
+				47FAB21F28EA4075007B9560 /* DefaultCircleFigureConfiguration.swift */,
+				47FAB22128EA40A3007B9560 /* DefaultArrowFigureConfiguration.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		47FAB21828EA2400007B9560 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				47FAB21928EA2417007B9560 /* FigureConfigutaion.swift */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -587,6 +641,7 @@
 			files = (
 				4733C66F28E0FBD600CA4B7F /* RectangleFigure.swift in Sources */,
 				47B2F48028D3C0FC002F0489 /* UIView.swift in Sources */,
+				47FAB21328EA1FE1007B9560 /* BackgroundColorProviding.swift in Sources */,
 				47D5EBB928E22E8E00741D7B /* ViewWithFigureProtocol.swift in Sources */,
 				4733C66928E0F15500CA4B7F /* CircleFigure.swift in Sources */,
 				479A2E9F28E4DE4500FE09FA /* ViewColor.swift in Sources */,
@@ -609,14 +664,17 @@
 				4733C63F28E09AA300CA4B7F /* CanvasListViewController.swift in Sources */,
 				4722D4E028BBFBA100055369 /* EdgeMovementValidatorProtocol.swift in Sources */,
 				4733C67228E1022D00CA4B7F /* CanvasViewModel.swift in Sources */,
+				47FAB21728EA212F007B9560 /* DefaultFigureConfigurationProtocol.swift in Sources */,
 				47855A5928B4089A00108D94 /* CanvasViewController.swift in Sources */,
 				47855A5528B4089A00108D94 /* AppDelegate.swift in Sources */,
 				47D5ED3528CA9E390021D0B9 /* RectangeViewProtocol.swift in Sources */,
+				47FAB20E28EA1BE0007B9560 /* ConfigurableFigure.swift in Sources */,
 				471F20F228D2917A00532217 /* ArrowDecoratorProtocol.swift in Sources */,
 				47855A5728B4089A00108D94 /* SceneDelegate.swift in Sources */,
 				4733C67928E1066A00CA4B7F /* SaverProtocol.swift in Sources */,
 				4733C66428E0EAE400CA4B7F /* BoundsProvider.swift in Sources */,
 				4733C66B28E0F17B00CA4B7F /* SquareFigure.swift in Sources */,
+				47FAB21028EA1EC8007B9560 /* DefaultFigureConfiguration.swift in Sources */,
 				471F20EB28D2892000532217 /* CircleDecoratorProtocol.swift in Sources */,
 				471D4CBC28B817B700250AA2 /* ViewWithEdgesProtocol.swift in Sources */,
 				4733C66728E0EBEE00CA4B7F /* FigureSaver.swift in Sources */,
@@ -625,15 +683,21 @@
 				4733C65D28E0E9D400CA4B7F /* BlockScheme.swift in Sources */,
 				47296BD428D137D40018086C /* FigureFactory.swift in Sources */,
 				4733C65128E0BACE00CA4B7F /* CanvasNewCell.swift in Sources */,
+				47FAB22028EA4075007B9560 /* DefaultCircleFigureConfiguration.swift in Sources */,
+				47FAB21A28EA2417007B9560 /* FigureConfigutaion.swift in Sources */,
 				4733C67528E1035500CA4B7F /* FigureError.swift in Sources */,
 				4733C63C28E098F000CA4B7F /* MainViewController.swift in Sources */,
 				47D5ED3B28CAAE3B0021D0B9 /* SquareViewProtocol.swift in Sources */,
 				471D4CB828B8144700250AA2 /* SquareEdgeDecorator.swift in Sources */,
+				47FAB22228EA40A3007B9560 /* DefaultArrowFigureConfiguration.swift in Sources */,
 				47296BD128D135330018086C /* FigureType.swift in Sources */,
 				471D4CAA28B810C200250AA2 /* SelectableView.swift in Sources */,
+				47FAB21C28EA3927007B9560 /* DefaultSquareFigureConfiguration.swift in Sources */,
+				47FAB21528EA2003007B9560 /* TextColorProviding.swift in Sources */,
 				471F20F028D2914600532217 /* SquareDecorator.swift in Sources */,
 				47855A6A28B40AC500108D94 /* SquareView.swift in Sources */,
 				471F20E728D2885100532217 /* CircleViewProtocol.swift in Sources */,
+				47FAB21E28EA405B007B9560 /* DefaultRectangleFigureConfiguration.swift in Sources */,
 				479A2EA328E4ECC700FE09FA /* Color.swift in Sources */,
 				4733C64D28E0A58800CA4B7F /* CanvasListCell.swift in Sources */,
 				47296BD728D138CC0018086C /* AppConfig.swift in Sources */,

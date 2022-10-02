@@ -9,7 +9,6 @@ import UIKit
 
 protocol ViewWithFigureProtocol: UIView {
     var figure: Figure { get set }
-    var figureColor: UIColor { get set }
     
-    init(figure: Figure, figureColor: UIColor, frame: CGRect)
+    init(figure: Figure, frame: CGRect)
 }

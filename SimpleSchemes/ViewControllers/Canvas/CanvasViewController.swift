@@ -293,7 +293,7 @@ extension CanvasViewController {
         for view in contentView.subviews {
             guard let view = view as? ViewWithFigureProtocol,
                   view.figure === figure else { continue }
-            view.figureColor = color
+            view.figure.backcolor = color
             view.setNeedsDisplay()
             return
         }

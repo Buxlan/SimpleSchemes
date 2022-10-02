@@ -37,15 +37,29 @@ class ArrowView: UIView, ArrowViewProtocol, SelectableAndRemovableViewWithFigure
         }
     }
     
+    private lazy var customMenu: UIMenu = {
+        let selectAction = UIAction(title: "TO_SELECT".localized(), image: AppImage.checkmarkCircleFill.image, attributes: []) { [unowned self] _ in
+            switchSelection()
+            delegate?.viewDidSelect(self)
+        }
+        let deleteAction = UIAction(title: "TO_DELETE".localized(), image: AppImage.trashFill.image, attributes: .destructive) { [unowned self] _ in
+            delegate?.viewWillRemove(self)
+            removeFromSuperview()
+        }
+        let menu = UIMenu(title: "CHOOSE_WHAT_TO_DO".localized(), image: nil, identifier: nil, children: [selectAction, deleteAction])
+        
+        return menu
+    }()
+    
     private var initialCenter: CGPoint = .zero
     var initialFrame: CGRect = .zero
     var initialTransform: CGAffineTransform = .identity
     
     internal var edgeViews: [EdgeType: EdgeViewProtocol] = [:]
     
-    required init(figure: Figure, figureColor: UIColor, frame: CGRect = .zero) {
+    required init(figure: Figure, frame: CGRect = .zero) {
         self.figure = figure
-        self.figureColor = figureColor
+        self.figureColor = figure.backcolor
         
         super.init(frame: frame)
         
@@ -59,6 +73,8 @@ class ArrowView: UIView, ArrowViewProtocol, SelectableAndRemovableViewWithFigure
         edgeViews.forEach { self.addSubview($1) }
         
         isOpaque = false
+        
+        addInteraction(UIContextMenuInteraction(delegate: self))
     }
     
     required init?(coder: NSCoder) {
@@ -124,4 +140,13 @@ extension ArrowView {
         setNeedsDisplay()
     }
     
+}
+
+extension ArrowView: UIContextMenuInteractionDelegate {
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+                                configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [unowned self] _ in
+            customMenu
+        }
+    }
 }

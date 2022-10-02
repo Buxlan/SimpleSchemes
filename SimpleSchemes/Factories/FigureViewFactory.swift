@@ -19,15 +19,15 @@ struct FigureViewFactoryImpl: FigureViewFactory {
     func makeFigureView(_ figure: Figure, color: UIColor, frame: CGRect = .zero, delegate: SelectableAndRemovableViewDelegate?) -> UIView {
         switch figure.type {
         case .square:
-            let view = SquareView(figure: figure, figureColor: color, frame: frame)
+            let view = SquareView(figure: figure, frame: frame)
             view.delegate = delegate
             return view
         case .rectangle:
-            let view = RectangleView(figure: figure, figureColor: color, frame: frame)
+            let view = RectangleView(figure: figure, frame: frame)
             view.delegate = delegate
             return view
         case .circle:
-            let view = CircleView(figure: figure, figureColor: color, frame: frame)
+            let view = CircleView(figure: figure, frame: frame)
             view.delegate = delegate
             return view
         case .arrow:
@@ -35,7 +35,7 @@ struct FigureViewFactoryImpl: FigureViewFactory {
             if frame != .zero {
                 initialFrame = frame
             }
-            let view = ArrowView(figure: figure, figureColor: color, frame: initialFrame)
+            let view = ArrowView(figure: figure, frame: initialFrame)
             view.delegate = delegate
             return view
         case .none:

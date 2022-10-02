@@ -19,8 +19,10 @@ class CircleView: UIView, CircleViewProtocol, SelectableAndRemovableViewWithFigu
     
     var figure: Figure
     var figureColor: UIColor {
-        didSet {
-            figure.backcolor = figureColor
+        get {
+            figure.backcolor
+        } set {
+            figure.backcolor = newValue
         }
     }
     
@@ -34,16 +36,31 @@ class CircleView: UIView, CircleViewProtocol, SelectableAndRemovableViewWithFigu
         }
     }
     
+    private lazy var customMenu: UIMenu = {
+        let selectAction = UIAction(title: "TO_SELECT".localized(), image: AppImage.checkmarkCircleFill.image, attributes: []) { [unowned self] _ in
+            switchSelection()
+            delegate?.viewDidSelect(self)
+        }
+        let deleteAction = UIAction(title: "TO_DELETE".localized(), image: AppImage.trashFill.image, attributes: .destructive) { [unowned self] _ in
+            delegate?.viewWillRemove(self)
+            removeFromSuperview()
+        }
+        let menu = UIMenu(title: "CHOOSE_WHAT_TO_DO".localized(), image: nil, identifier: nil, children: [selectAction, deleteAction])
+        
+        return menu
+    }()
+    
     private var initialCenter: CGPoint = .zero
     var initialFrame: CGRect = .zero
     
     internal var edgeViews: [RectangleEdgeType: EdgeViewProtocol] = [:]
     
-    required init(figure: Figure, figureColor: UIColor, frame: CGRect = .zero) {
+    required init(figure: Figure, frame: CGRect = .zero) {
         self.figure = figure
-        self.figureColor = figureColor
         
         super.init(frame: frame)
+        
+        self.figureColor = figure.backcolor
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
         addGestureRecognizer(gesture)
@@ -55,6 +72,8 @@ class CircleView: UIView, CircleViewProtocol, SelectableAndRemovableViewWithFigu
         edgeViews.forEach { self.addSubview($1) }
         
         isOpaque = false
+        
+        addInteraction(UIContextMenuInteraction(delegate: self))
     }
     
     required init?(coder: NSCoder) {
@@ -137,4 +156,13 @@ extension CircleView: EdgeMovementValidatorProtocol {
         return true
     }
 
+}
+
+extension CircleView: UIContextMenuInteractionDelegate {
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+                                configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [unowned self] _ in
+            customMenu
+        }
+    }
 }

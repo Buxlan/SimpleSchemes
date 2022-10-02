@@ -18,3 +18,11 @@ class ArrowFigure: Figure {
     }
     
 }
+
+extension ArrowFigure: ConfigurableFigure {
+    typealias DataType = BackgroundColorProviding
+    
+    func configure(with data: DataType) {
+        backcolor = data.backgroundColor
+    }
+}
