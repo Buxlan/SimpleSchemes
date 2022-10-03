@@ -30,8 +30,9 @@ class CanvasViewController: UIViewController {
     }()
     
     private let bottomMenuView = FigurePropertiesBottomSlidingMenu()
-    
     private let toolsView = VerticalToolsView()
+    
+    private var keyboardManager = KeyboardAppearanceManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,9 +64,7 @@ class CanvasViewController: UIViewController {
         contentView.addGestureRecognizer(gesture)
         
         configureBars()
-        
         configureConstraints()
-        
         hideFigurePropertiesMenu()
     }
     
@@ -81,8 +80,14 @@ class CanvasViewController: UIViewController {
         print("ViewController viewDidLayoutSubviews")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        keyboardManager.register(scrollView: scrollView)
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        keyboardManager.unregister()
         tabBarController?.tabBar.isHidden = false
     }
     
@@ -160,7 +165,6 @@ class CanvasViewController: UIViewController {
 }
 
 // MARK: - UIScrollViewDelegate
-
 extension CanvasViewController: UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -175,7 +179,6 @@ extension CanvasViewController: UIScrollViewDelegate {
 }
 
 // MARK: - VerticalToolsViewDelegate
-
 extension CanvasViewController: VerticalToolsViewDelegate {
     func addFigure(with type: FigureType) {
         let figure = viewModel.addFigure(with: type)
@@ -188,6 +191,10 @@ extension CanvasViewController: VerticalToolsViewDelegate {
         
         view.frame = frame
         
+        if let view = view as? SquareView {
+            view.textDelegate = self
+        }
+        
         print("scrollView.bounds: \(scrollView.bounds)")
         print("scrollView.bounds.midX: \(scrollView.bounds.midX)")
         print("scrollView.bounds.midY: \(scrollView.bounds.midY)")
@@ -197,7 +204,6 @@ extension CanvasViewController: VerticalToolsViewDelegate {
 }
 
 // MARK: - SelectableAndRemovableViewDelegate
-
 extension CanvasViewController: SelectableAndRemovableViewDelegate {
     
     func viewWillRemove(_ view: ViewWithFigureProtocol) {
@@ -229,7 +235,6 @@ extension CanvasViewController: SelectableAndRemovableViewDelegate {
 }
 
 // MARK: - CanvasViewModelDelegate
-
 extension CanvasViewController: CanvasViewModelDelegate {
     func updateCanvas() {
         print("CanvasViewController updateCanvas")
@@ -238,17 +243,33 @@ extension CanvasViewController: CanvasViewModelDelegate {
             let view = figureViewFactory.makeFigureView(figure, color: figure.backcolor,frame: figure.frame, delegate: self)
             view.frame = figure.frame
             
+            if let view = view as? SquareView {
+                view.textDelegate = self
+            }
+            
             contentView.addSubview(view)
         }
     }
 }
 
 // MARK: - FigurePropertiesBottomSlidingMenuDelegate
-
 extension CanvasViewController: FigurePropertiesBottomSlidingMenuDelegate {
     func colorDidSelect(_ color: UIColor) {
         guard let figure = viewModel.selectedFigure else { return }
         set(color: color, to: figure)
+    }
+}
+
+// MARK: - UITextViewDelegate
+extension CanvasViewController: UITextViewDelegate {
+    
+    
+    
+}
+
+extension CanvasViewController: DoneKeyboardAccessoryViewDelegate {
+    func onDone() {
+        view.becomeFirstResponder()
     }
 }
 

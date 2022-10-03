@@ -7,9 +7,12 @@
 
 import UIKit
 
-class SquareView: UIView, SquareViewProtocol, SelectableAndRemovableViewWithFigureAndEdges {
+class SquareView: UIView, SquareViewProtocol, SelectableAndRemovableViewWithFigureTextAndEdges {
     
     typealias EdgeType = RectangleEdgeType
+    
+    weak var delegate: SelectableAndRemovableViewDelegate?
+    weak var textDelegate: (UITextViewDelegate & DoneKeyboardAccessoryViewDelegate)?
     
     override var frame: CGRect {
         didSet {
@@ -26,8 +29,6 @@ class SquareView: UIView, SquareViewProtocol, SelectableAndRemovableViewWithFigu
             figure.backcolor = newValue
         }
     }
-    
-    weak var delegate: SelectableAndRemovableViewDelegate?
     
     let decorator = RoundedRectangleDecorator()
     
@@ -49,6 +50,28 @@ class SquareView: UIView, SquareViewProtocol, SelectableAndRemovableViewWithFigu
         let menu = UIMenu(title: "CHOOSE_WHAT_TO_DO".localized(), image: nil, identifier: nil, children: [selectAction, deleteAction])
         
         return menu
+    }()
+    
+    private lazy var keyboardAccessoryView: DoneKeyboardAccessoryView = {
+        let width = UIScreen.main.bounds.width
+        let frame = CGRect(x: 0, y: 0, width: width, height: 44)
+        let view = DoneKeyboardAccessoryView(frame: frame)
+        view.delegate = self
+        return view
+    }()
+    
+    private lazy var textView: UITextView = {
+        let view = UITextView()
+        view.textColor = .black
+        view.font = .systemFont(ofSize: 15)
+        view.delegate = self
+        view.textAlignment = .center
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .clear
+        view.inputAccessoryView = keyboardAccessoryView
+        view.isScrollEnabled = false
+        
+        return view
     }()
     
     private var initialCenter: CGPoint = .zero
@@ -75,6 +98,9 @@ class SquareView: UIView, SquareViewProtocol, SelectableAndRemovableViewWithFigu
         isOpaque = false
                 
         addInteraction(UIContextMenuInteraction(delegate: self))
+        
+        configureInterface()
+        configureConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -106,6 +132,66 @@ class SquareView: UIView, SquareViewProtocol, SelectableAndRemovableViewWithFigu
         }
     }
     
+    private func configureInterface() {
+        addSubview(textView)
+    }
+    
+    private func configureConstraints() {
+        let constraints: [NSLayoutConstraint] = [
+            textView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            textView.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20),
+            textView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            textView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: -20)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+    }
+}
+ 
+// MARK: - UITextViewDelegate
+extension SquareView: UITextViewDelegate {
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        textDelegate?.textViewShouldBeginEditing?(textView) ?? true
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        textDelegate?.textViewShouldEndEditing?(textView) ?? true
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textDelegate?.textViewDidBeginEditing?(textView)
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        textDelegate?.textViewDidEndEditing?(textView)
+    }
+
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        textDelegate?.textView?(textView, shouldChangeTextIn: range, replacementText: text) ?? true
+    }
+
+    func textViewDidChange(_ textView: UITextView) {
+        textDelegate?.textViewDidChange?(textView)
+    }
+
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        textDelegate?.textViewDidChangeSelection?(textView)
+    }
+
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        textDelegate?.textView?(textView, shouldInteractWith: URL, in: characterRange, interaction: interaction) ?? true
+    }
+
+    func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        textDelegate?.textView?(textView, shouldInteractWith: textAttachment, in: characterRange, interaction: interaction) ?? true
+    }
+}
+
+extension SquareView: DoneKeyboardAccessoryViewDelegate {
+    func onDone() {
+        textView.resignFirstResponder()
+        textDelegate?.onDone()
+    }
 }
 
 extension SquareView {

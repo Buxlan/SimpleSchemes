@@ -70,6 +70,8 @@
 		47855A6A28B40AC500108D94 /* SquareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47855A6928B40AC500108D94 /* SquareView.swift */; };
 		47855A6C28B4125600108D94 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47855A6B28B4125600108D94 /* CircleView.swift */; };
 		47855A6E28B423F000108D94 /* ConnectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47855A6D28B423F000108D94 /* ConnectableView.swift */; };
+		478D351228EB8C21001C5D46 /* KeyboardAppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478D351128EB8C21001C5D46 /* KeyboardAppearanceManager.swift */; };
+		478D351528EB8D2C001C5D46 /* DoneKeyboardAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478D351428EB8D2C001C5D46 /* DoneKeyboardAccessoryView.swift */; };
 		4795933028E4CCF70041FE0C /* FigurePropertiesBottomSlidingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4795932F28E4CCF70041FE0C /* FigurePropertiesBottomSlidingMenu.swift */; };
 		479A2E9F28E4DE4500FE09FA /* ViewColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479A2E9E28E4DE4500FE09FA /* ViewColor.swift */; };
 		479A2EA128E4DFFC00FE09FA /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479A2EA028E4DFFC00FE09FA /* CircleButton.swift */; };
@@ -165,6 +167,8 @@
 		47855A6928B40AC500108D94 /* SquareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareView.swift; sourceTree = "<group>"; };
 		47855A6B28B4125600108D94 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		47855A6D28B423F000108D94 /* ConnectableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectableView.swift; sourceTree = "<group>"; };
+		478D351128EB8C21001C5D46 /* KeyboardAppearanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardAppearanceManager.swift; sourceTree = "<group>"; };
+		478D351428EB8D2C001C5D46 /* DoneKeyboardAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneKeyboardAccessoryView.swift; sourceTree = "<group>"; };
 		4795932F28E4CCF70041FE0C /* FigurePropertiesBottomSlidingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigurePropertiesBottomSlidingMenu.swift; sourceTree = "<group>"; };
 		479A2E9E28E4DE4500FE09FA /* ViewColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewColor.swift; sourceTree = "<group>"; };
 		479A2EA028E4DFFC00FE09FA /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
@@ -448,6 +452,7 @@
 			isa = PBXGroup;
 			children = (
 				4733C67B28E1077E00CA4B7F /* FileUtil.swift */,
+				478D351128EB8C21001C5D46 /* KeyboardAppearanceManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -506,6 +511,7 @@
 		47855A6828B40AB700108D94 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				478D351328EB8CF1001C5D46 /* Keyboard */,
 				4795932E28E4CCE80041FE0C /* Menu */,
 				471F20F528D2928D00532217 /* Figures */,
 				47296BCD28D130710018086C /* Toolbar and buttons */,
@@ -513,6 +519,14 @@
 				479A2EA028E4DFFC00FE09FA /* CircleButton.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		478D351328EB8CF1001C5D46 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				478D351428EB8D2C001C5D46 /* DoneKeyboardAccessoryView.swift */,
+			);
+			path = Keyboard;
 			sourceTree = "<group>";
 		};
 		4795932E28E4CCE80041FE0C /* Menu */ = {
@@ -679,6 +693,7 @@
 				471D4CBC28B817B700250AA2 /* ViewWithEdgesProtocol.swift in Sources */,
 				4733C66728E0EBEE00CA4B7F /* FigureSaver.swift in Sources */,
 				4733C65F28E0EA3600CA4B7F /* Figure.swift in Sources */,
+				478D351228EB8C21001C5D46 /* KeyboardAppearanceManager.swift in Sources */,
 				471F20E928D288C700532217 /* CircleDecorator.swift in Sources */,
 				4733C65D28E0E9D400CA4B7F /* BlockScheme.swift in Sources */,
 				47296BD428D137D40018086C /* FigureFactory.swift in Sources */,
@@ -694,6 +709,7 @@
 				471D4CAA28B810C200250AA2 /* SelectableView.swift in Sources */,
 				47FAB21C28EA3927007B9560 /* DefaultSquareFigureConfiguration.swift in Sources */,
 				47FAB21528EA2003007B9560 /* TextColorProviding.swift in Sources */,
+				478D351528EB8D2C001C5D46 /* DoneKeyboardAccessoryView.swift in Sources */,
 				471F20F028D2914600532217 /* SquareDecorator.swift in Sources */,
 				47855A6A28B40AC500108D94 /* SquareView.swift in Sources */,
 				471F20E728D2885100532217 /* CircleViewProtocol.swift in Sources */,
