@@ -32,3 +32,5 @@
 
 // CanvasViewController
 "INPUT.NAME" = "Введите название";
+
+"FIGURE_COLOR" = "Цвет фигуры";

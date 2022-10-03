@@ -27,7 +27,7 @@ extension ArrowViewProtocol {
         var newFrame: CGRect
         
         
-        guard difx != 0, dify != 0 else { return }
+//        guard difx != 0, dify != 0 else { return }
 //        guard dify != 0 else { return }
         
 //        switch edgeType {
@@ -45,6 +45,9 @@ extension ArrowViewProtocol {
 //        frame = newFrame
         
         let identity = transform
+        
+        print("ArrowView frame is \(frame)")
+        
 //        transform = CGAffineTransform(a: identity.a, b: identity.b, c: identity.c, d: identity.d, tx: difx, ty: dify)
 //        transform = CGAffineTransform(rotationAngle: .pi/4)
 //        transform = CGAffineTransform(translationX: difx, y: dify)

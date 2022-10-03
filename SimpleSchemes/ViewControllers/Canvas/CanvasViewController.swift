@@ -270,9 +270,11 @@ extension CanvasViewController {
         if animated {
             UIView.animate(withDuration: 0.5) {
                 self.bottomMenuView.frame = CGRect(origin: origin, size: size)
+                self.bottomMenuView.setState(.opened)
             }
         } else {
             bottomMenuView.frame = CGRect(origin: origin, size: size)
+            bottomMenuView.setState(.opened)
         }
     }
     
@@ -283,9 +285,11 @@ extension CanvasViewController {
         if animated {
             UIView.animate(withDuration: 0.5) {
                 self.bottomMenuView.frame = CGRect(origin: origin, size: size)
+                self.bottomMenuView.setState(.closed)
             }
         } else {
             bottomMenuView.frame = CGRect(origin: origin, size: size)
+            bottomMenuView.setState(.closed)
         }
     }
     
